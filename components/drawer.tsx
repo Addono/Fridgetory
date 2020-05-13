@@ -1,7 +1,6 @@
 import {useState} from "react";
 
-import {Button, Card, Divider, Tag} from "antd";
-import {Select} from 'antd';
+import {Card, Divider, Tag, Select} from 'antd';
 
 const {Option} = Select;
 
@@ -14,8 +13,8 @@ const quantities = [1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 const quantityOptions = quantities
     .map(q => `${q}g`)
     .map((quantity, index) => (
-    <Option key={index} value={quantity} style={{width: "100px"}}>{quantity}</Option>
-))
+        <Option key={index} value={quantity} style={{width: "100px"}}>{quantity}</Option>
+    ))
 
 const Product = ({name}) => {
     const [amount, setAmount] = useState<{ quantity: string }[]>([])
