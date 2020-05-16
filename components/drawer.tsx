@@ -4,11 +4,6 @@ import {Card, Divider, Tag, Select} from 'antd';
 
 const {Option} = Select;
 
-const children = [];
-for (let i = 10; i < 36; i++) {
-    children.push(<Option key={i.toString(36) + i} value={i}>{i.toString(36) + i}</Option>);
-}
-
 const quantities = [1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 const quantityOptions = quantities
     .map(q => `${q}g`)
@@ -31,8 +26,6 @@ const Product = ({name}) => {
                 </Tag>
             ))}
             <Select
-                // showSearch
-                // mode="tags"
                 style={{width: '5em'}}
                 placeholder="Add"
                 value={[]}
