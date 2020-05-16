@@ -50,13 +50,9 @@ export const QUERY_PLACES = gql`
 const Places = () => {
     const {loading, error, data} = useQuery<QueryAllItemsByPlace>(QUERY_PLACES)
 
-    console.log(loading)
-
     if (loading) return <p>Loading...</p>
     if (error) return <p>Something didn't really work out 😿</p>
     if (!data) return <p>Couldn't find anything, try adding something!</p>
-
-    console.log(data)
 
     return (
         <Space direction="vertical" style={{width: "100%"}}>
