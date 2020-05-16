@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 import {Card, Divider, Tag, Select, Spin} from 'antd';
 
 import {Item, Product, QUERY_PLACES} from "./Places";
