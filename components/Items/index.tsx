@@ -35,7 +35,7 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
     const [deleteItem] = useMutation(MUTATION_DELETE_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
 
     return (
-        <div style={{width: '400px'}}>
+        <div style={{width: '100%'}}>
             <Divider>{name}</Divider>
             {items.map(({quantity, unit, id}, index) => (
                 <Tag closable key={id} onClose={(e: Event) => {
