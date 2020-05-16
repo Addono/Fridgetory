@@ -12,6 +12,7 @@ export interface Item {
 }
 
 export interface Product {
+    id: number
     productType: {
         name: string
     },
@@ -32,6 +33,7 @@ export const QUERY_PLACES = gql`
             id
             name
             products {
+                id
                 productType {
                     name
                 }
