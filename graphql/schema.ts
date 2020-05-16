@@ -7,9 +7,9 @@ use(prisma())
 schema.queryType({
     definition(t) {
         t.crud.product()
-        t.crud.products({
-            ordering: true,
-        })
+        t.crud.products()
+        t.crud.productType()
+        t.crud.productTypes()
         t.crud.item()
         t.crud.items()
         t.crud.place()
@@ -20,8 +20,17 @@ schema.queryType({
 schema.mutationType({
     definition(t) {
         t.crud.createOneProduct()
+        t.crud.createOneProductType()
         t.crud.createOneItem()
         t.crud.createOnePlace()
+    }
+})
+
+schema.objectType({
+    name: 'ProductType',
+    definition: (t) => {
+        t.model.id()
+        t.model.name()
     }
 })
 
@@ -29,7 +38,8 @@ schema.objectType({
     name: 'Product',
     definition: (t) => {
         t.model.id()
-        t.model.name()
+        t.model.productType()
+        t.model.items()
     },
 })
 
@@ -40,14 +50,14 @@ schema.objectType({
         t.model.quantity()
         t.model.unit()
         t.model.product()
-        t.model.place()
     }
 })
 
 schema.objectType({
     name: "Place",
     definition: (t) => {
+        t.model.id()
         t.model.name()
-        t.model.items()
+        t.model.products()
     }
 })

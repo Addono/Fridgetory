@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Drawer from "../components/drawer";
-import {Col, Divider, Row, Space} from "antd";
+import {Col, Divider, Row} from "antd";
+import Places from "../components/Places";
 
 const Home = () => {
     return (
@@ -14,11 +14,7 @@ const Home = () => {
                 <Row>
                     <Col xs={1} sm={3} md={6}/>
                     <Col xs={22} sm={18} md={12}>
-                        <Space direction="vertical" style={{width: "100%"}}>
-                            {[1, 2, 3, 4, 5, 6, 7].map(drawerNumber => (
-                                <Drawer key={drawerNumber} title={`Drawer ${drawerNumber}`}/>
-                            ))}
-                        </Space>
+                        <Places />
                     </Col>
                 </Row>
             </main>

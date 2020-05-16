@@ -3,4 +3,5 @@
 # Prisma Migrate lockfile v1
 # Read more about conflict resolution here: TODO
 
-20200516094514-init
+20200516113333-init
+20200516113840-backlink-products-to-items
