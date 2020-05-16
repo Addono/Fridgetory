@@ -32,7 +32,7 @@ const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
 `
 
 const AddProduct = ({placeId, existingProducts}: { placeId: number, existingProducts: Product[] }) => {
-    const {loading, error, data} = useQuery<QueryAllProductTypes>(QUERY_ALL_PRODUCT_TYPES)
+    const {loading, error, data} = useQuery<QueryAllProductTypes>(QUERY_ALL_PRODUCT_TYPES, {pollInterval: 10000})
     const [addProductToPlace, {loading: refetching}] = useMutation(MUTATION_ADD_PRODUCT_TO_PLACE, {refetchQueries: [{query: QUERY_ALL_PRODUCT_TYPES}]})
 
     if (loading || error || !data?.productTypes) return null

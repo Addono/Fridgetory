@@ -48,7 +48,7 @@ export const QUERY_PLACES = gql`
 `
 
 const Places = () => {
-    const {loading, error, data} = useQuery<QueryAllItemsByPlace>(QUERY_PLACES)
+    const {loading, error, data} = useQuery<QueryAllItemsByPlace>(QUERY_PLACES, { pollInterval: 1000})
 
     if (loading) return <Spin />
     if (error) return <p>Something didn't really work out 😿</p>
