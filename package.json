@@ -10,6 +10,7 @@
   "dependencies": {
     "antd": "^4.2.2",
     "next": "9.4.0",
+    "nexus": "^0.21.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "typescript": "^3.9.2"
