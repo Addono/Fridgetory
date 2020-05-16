@@ -25,16 +25,25 @@ const MUTATION_ADD_ITEM = gql`
     }
 `
 
+const MUTATION_DELETE_ITEM = gql`
+    mutation DeleteItem($id: Int!) {
+        deleteOneItem(where: {id: $id}) {
+            id
+        }
+    }
+`
+
 const Items = ({productId, name, items}: { productId: number, name: string, items: Item[] }) => {
-    const [addItem, { loading }] = useMutation(MUTATION_ADD_ITEM, { refetchQueries: [{query: QUERY_PLACES}]})
+    const [addItem, {loading}] = useMutation(MUTATION_ADD_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
+    const [deleteItem] = useMutation(MUTATION_DELETE_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
 
     return (
         <div style={{width: '400px'}}>
             <Divider>{name}</Divider>
-            {items.map(({quantity}, index) => (
-                <Tag closable key={index} onClose={(e: Event) => {
+            {items.map(({quantity, id}, index) => (
+                <Tag closable key={id} onClose={(e: Event) => {
                     e.preventDefault();
-                    // setAmount(amount.filter((_, i) => i !== index))
+                    deleteItem({variables: {id}})
                 }}>
                     {quantity}
                 </Tag>
@@ -47,14 +56,15 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
             >
                 {quantityOptions}
             </Select>
-            { loading && <Spin />}
+            {loading && <Spin/>}
         </div>
     )
 }
 
 const Place = ({id, name, products}: { id: number, name: string, products: Product[] }) => (
     <Card title={name} style={{width: "100%"}}>
-        {products.map(({id, items, productType: {name}}) => <Items productId={id} key={name} name={name} items={items}/>)}
+        {products.map(({id, items, productType: {name}}) => <Items productId={id} key={name} name={name}
+                                                                   items={items}/>)}
         <Divider/>
         <AddProduct placeId={id} existingProducts={products}/>
     </Card>
