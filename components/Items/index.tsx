@@ -1,9 +1,6 @@
-import {Card, Divider, Tag, Select, Spin} from 'antd';
-
-import {Item, Product, QUERY_PLACES} from "./Places";
-import AddProduct from "./AddProduct";
+import {Divider, Select, Spin, Tag} from "antd";
 import {gql, useMutation} from "@apollo/client";
-
+import {Item, QUERY_PLACES} from "../Places";
 
 const quantities = [1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     .map(quantity => ({quantity, unit: "g"}))
@@ -61,15 +58,4 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
     )
 }
 
-const Place = ({id, name, products}: { id: number, name: string, products: Product[] }) => (
-    <Card title={name} style={{width: "100%"}}>
-        {products.map(({id, items, productType: {name}}) => <Items productId={id} key={name} name={name}
-                                                                   items={items}/>)}
-        <Divider/>
-        <AddProduct placeId={id} existingProducts={products}/>
-    </Card>
-)
-
-
-export default Place
-
+export default Items
