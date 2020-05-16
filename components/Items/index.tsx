@@ -37,12 +37,12 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
     return (
         <div style={{width: '400px'}}>
             <Divider>{name}</Divider>
-            {items.map(({quantity, id}, index) => (
+            {items.map(({quantity, unit, id}, index) => (
                 <Tag closable key={id} onClose={(e: Event) => {
                     e.preventDefault();
                     deleteItem({variables: {id}})
                 }}>
-                    {quantity}
+                    {quantity}{unit}
                 </Tag>
             ))}
             <Select
