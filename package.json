@@ -6,7 +6,7 @@
     "start": "next start",
     "dev": "next dev",
     "test": "next build",
-    "build": "yarn prisma:generate && next build",
+    "build": "yarn prisma:generate && yarn nexus build && next build",
     "nexus:reflection": "nexus dev --reflection --entrypoint pages/api/graphql.ts",
     "nexus:check": "nexus build --entrypoint pages/api/graphql.ts && nexus build --entrypoint pages/api/playground.ts",
     "prisma:generate": "prisma generate",

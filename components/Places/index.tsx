@@ -1,6 +1,6 @@
 import {gql, useQuery} from "@apollo/client";
 
-import {Space} from "antd";
+import {Space, Spin} from "antd";
 
 import Place from "../Place";
 import AddPlace from "./AddPlace";
@@ -50,7 +50,7 @@ export const QUERY_PLACES = gql`
 const Places = () => {
     const {loading, error, data} = useQuery<QueryAllItemsByPlace>(QUERY_PLACES)
 
-    if (loading) return <p>Loading...</p>
+    if (loading) return <Spin />
     if (error) return <p>Something didn't really work out 😿</p>
     if (!data) return <p>Couldn't find anything, try adding something!</p>
 

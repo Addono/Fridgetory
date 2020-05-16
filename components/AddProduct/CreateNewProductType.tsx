@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {gql, useMutation} from "@apollo/client";
 import {QUERY_PLACES} from "../Places";
-import {Input} from "antd";
+import {Input, Spin} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
 
 const MUTATION_CREATE_PRODUCT = gql`
@@ -22,7 +22,7 @@ const CreateNewProductType = ({placeId}: { placeId: number }) => {
     return <>
         <Input style={{flex: 'auto'}} value={newProductTypeName}
                onChange={({target: {value}}) => setNewProductTypeName(value)}/>
-        {loading ? <p>Loading</p>
+        {loading ? <Spin />
             :
             <a
                 style={{flex: 'none', padding: '8px', display: 'block', cursor: 'pointer'}}

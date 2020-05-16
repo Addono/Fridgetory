@@ -1,11 +1,11 @@
 import {use} from 'nexus'
 import {prisma} from 'nexus-plugin-prisma'
-import {schema, server} from "nexus/dist";
+import {schema} from "nexus/dist";
 
 use(prisma())
 
 schema.queryType({
-    definition(t) {
+    definition: (t) => {
         t.crud.product()
         t.crud.products()
         t.crud.productType()
@@ -18,7 +18,7 @@ schema.queryType({
 })
 
 schema.mutationType({
-    definition(t) {
+    definition: (t) => {
         t.crud.createOneProduct()
         t.crud.createOneProductType()
         t.crud.createOneItem()
