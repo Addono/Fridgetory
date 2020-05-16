@@ -23,7 +23,7 @@ const AddPlace = () => {
             value={name}
             onChange={({target: {value}}) => setName(value)}
             maxLength={50}
-            disable={loading}
+            disabled={loading}
             allowClear
         />
         <Button
