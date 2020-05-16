@@ -40,6 +40,7 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
             {items.map(({quantity, unit, id}, index) => (
                 <Tag closable key={id} onClose={(e: Event) => {
                     e.preventDefault();
+
                     deleteItem({variables: {id}})
                 }}>
                     {quantity}{unit}

@@ -19,12 +19,14 @@ export interface Product {
     items: Item[]
 }
 
-interface QueryAllItemsByPlace {
-    places: [{
-        id: number,
-        name: string,
-        products: Product[]
-    }]
+export interface IPlace {
+    id: number,
+    name: string,
+    products: Product[]
+}
+
+export interface QueryAllItemsByPlace {
+    places: IPlace[]
 }
 
 export const QUERY_PLACES = gql`
@@ -48,7 +50,7 @@ export const QUERY_PLACES = gql`
 `
 
 const Places = () => {
-    const {loading, error, data} = useQuery<QueryAllItemsByPlace>(QUERY_PLACES, { pollInterval: 1000})
+    const {loading, error, data} = useQuery<QueryAllItemsByPlace>(QUERY_PLACES, { pollInterval: 60000, fetchPolicy: "cache-first"})
 
     if (loading) return <Spin />
     if (error) return <p>Something didn't really work out 😿</p>

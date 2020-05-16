@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {gql, useMutation} from "@apollo/client";
-import {QUERY_PLACES} from "../Places";
 import {Input, Spin} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
+import {MUTATION_ADD_PRODUCT_TO_PLACE} from "./index";
 
 const MUTATION_CREATE_PRODUCT = gql`
     mutation CreateProduct($name: String!, $placeId: Int!) {
@@ -17,7 +17,7 @@ const MUTATION_CREATE_PRODUCT = gql`
 
 const CreateNewProductType = ({placeId}: { placeId: number }) => {
     const [newProductTypeName, setNewProductTypeName] = useState<string>("")
-    const [createProduct, {loading}] = useMutation(MUTATION_CREATE_PRODUCT, {refetchQueries: [{query: QUERY_PLACES}]})
+    const [createProduct, {loading}] = useMutation(MUTATION_CREATE_PRODUCT, {refetchQueries: [{query: MUTATION_ADD_PRODUCT_TO_PLACE}]})
 
     return <>
         <Input style={{flex: 'auto'}} value={newProductTypeName}

@@ -1,5 +1,5 @@
 import {gql, useMutation, useQuery} from "@apollo/client";
-import {Product} from "../Places";
+import {Product, QUERY_PLACES} from "../Places";
 import {Divider, Select} from "antd";
 import CreateNewProductType from "./CreateNewProductType";
 
@@ -20,7 +20,7 @@ const QUERY_ALL_PRODUCT_TYPES = gql`
     }
 `
 
-const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
+export const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
     mutation AddProductToPlace($productTypeId: Int!, $placeId: Int!) {
         createOneProduct(data: {
             productType: {connect: {id: $productTypeId}}
@@ -33,7 +33,7 @@ const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
 
 const AddProduct = ({placeId, existingProducts}: { placeId: number, existingProducts: Product[] }) => {
     const {loading, error, data} = useQuery<QueryAllProductTypes>(QUERY_ALL_PRODUCT_TYPES, {pollInterval: 10000})
-    const [addProductToPlace, {loading: refetching}] = useMutation(MUTATION_ADD_PRODUCT_TO_PLACE, {refetchQueries: [{query: QUERY_ALL_PRODUCT_TYPES}]})
+    const [addProductToPlace, {loading: refetching}] = useMutation(MUTATION_ADD_PRODUCT_TO_PLACE, {refetchQueries: [{query: QUERY_PLACES}]})
 
     if (loading || error || !data?.productTypes) return null
 
