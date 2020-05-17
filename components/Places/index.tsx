@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 
 import { Space, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import Place from "../Place";
 import AddPlace from "./AddPlace";
@@ -49,13 +50,15 @@ export const QUERY_PLACES = gql`
   }
 `;
 
+const spinnerIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 const Places = () => {
   const { loading, error, data } = useQuery<QueryAllItemsByPlace>(
     QUERY_PLACES,
     { pollInterval: 60000, fetchPolicy: "cache-first" }
   );
 
-  if (loading) return <Spin />;
+  if (loading) return <Spin indicator={spinnerIcon} />;
   if (error) return <p>Something didn't really work out 😿</p>;
   if (!data) return <p>Couldn't find anything, try adding something!</p>;
 
