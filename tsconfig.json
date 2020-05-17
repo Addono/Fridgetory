@@ -11,7 +11,7 @@
     "strict": true,
     "outDir": "dist",
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
