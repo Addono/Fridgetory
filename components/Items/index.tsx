@@ -22,7 +22,7 @@ const MUTATION_ADD_ITEM = gql`
     }
 `
 
-const updateItemInData = ({places, ...args}: QueryAllItemsByPlace, productId: number, item: Item): QueryAllItemsByPlace => ({
+const updateItemInData = ({places, ...args}: QueryAllItemsByPlace, productId: number, modifyTargettedItems: (items: Item[]) => Item[]): QueryAllItemsByPlace => ({
     ...args,
     places: places.map(({products, ...args}) => (
         {
@@ -31,23 +31,37 @@ const updateItemInData = ({places, ...args}: QueryAllItemsByPlace, productId: nu
                 {
                     id,
                     ...args,
-                    items: productId === id ? items.concat([item]) : items,
+                    items: productId === id ? modifyTargettedItems(items) : items,
                 })
             )
         })
     )
 })
 
-const addItemToCache = ({productId, client, item}: { productId: number, client: ApolloClient<Object>, item: Item }) => {
+const modifyItemsInCache = ({productId, client, modifyItems}: { productId: number, client: ApolloClient<Object>, modifyItems: (items: Item[]) => Item[] }) => {
     const data: QueryAllItemsByPlace | null = client.readQuery({query: QUERY_PLACES})
 
     // Only update the data if there was actually something in the cache
     if (data) {
         client.writeQuery({
             query: QUERY_PLACES,
-            data: updateItemInData(data, productId, item)
+            data: updateItemInData(data, productId, modifyItems)
         })
     }
+}
+
+const addItemToCache = ({item, ...args}: { productId: number, client: ApolloClient<Object>, item: Item}) => {
+    modifyItemsInCache({
+        modifyItems: (items) => items.concat([item]),
+        ...args
+    })
+}
+
+const removeItemFromCache = ({id: targetId, ...args}: { productId: number, client: ApolloClient<Object>, id: number}) => {
+    modifyItemsInCache({
+        modifyItems: (items) => items.map(({id, ...args}) => ({ id: id === targetId ? -targetId : targetId, ...args})),
+        ...args
+    })
 }
 
 const MUTATION_DELETE_ITEM = gql`
@@ -59,8 +73,8 @@ const MUTATION_DELETE_ITEM = gql`
 `
 
 const Items = ({productId, name, items}: { productId: number, name: string, items: Item[] }) => {
-    const [addItemMutation, {loading}] = useMutation(MUTATION_ADD_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
-    const [deleteItem] = useMutation(MUTATION_DELETE_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
+    const [addItemMutation] = useMutation(MUTATION_ADD_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
+    const [deleteItemMutation] = useMutation(MUTATION_DELETE_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
     const client = useApolloClient()
 
     const addItem = ({quantity, unit}: { quantity: number, unit: string }) => {
@@ -71,16 +85,24 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
         addItemMutation({variables: {quantity, unit, productId}})
     }
 
+    const deleteItem = ({id}: {id: number}) => {
+        // Remove item from cache to immediately reflect the desired changes
+        removeItemFromCache({productId, id, client})
+
+        // Send the query
+        deleteItemMutation({variables: {id}})
+    }
+
     return (
         <div style={{width: '100%'}}>
             <Divider>{name}</Divider>
-            {items.map(({quantity, unit, id}, index) => (
+            {items.map(({quantity, unit, id}) => (
                 <Tag
                     closable={id >= 0} // Hide the close button for items merely existing in cache
                     key={id}
                     onClose={(e: Event) => {
                         e.preventDefault();
-                        deleteItem({variables: {id}})
+                        deleteItem({id})
                     }}>
                     {quantity}{unit}
                 </Tag>
