@@ -59,7 +59,7 @@ const addItemToCache = ({item, ...args}: { productId: number, client: ApolloClie
 
 const removeItemFromCache = ({id: targetId, ...args}: { productId: number, client: ApolloClient<Object>, id: number}) => {
     modifyItemsInCache({
-        modifyItems: (items) => items.map(({id, ...args}) => ({ id: id === targetId ? -targetId : targetId, ...args})),
+        modifyItems: (items) => items.map(({id, ...args}) => ({ id: id === targetId ? -id : id, ...args})),
         ...args
     })
 }
@@ -79,7 +79,7 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
 
     const addItem = ({quantity, unit}: { quantity: number, unit: string }) => {
         // Update the cache to immediately reflect the change
-        addItemToCache({productId, item: {quantity, unit, id: -1}, client})
+        addItemToCache({productId, item: {quantity, unit, id: -items.length}, client})
 
         // Execute the mutation for persistent storage of the change
         addItemMutation({variables: {quantity, unit, productId}})
