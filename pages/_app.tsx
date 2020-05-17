@@ -1,18 +1,21 @@
 import React from "react";
 import '../styles.css'
 import fetch from 'node-fetch'
-import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client'
+import {ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache} from '@apollo/client'
+
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: new HttpLink({
-        uri: '/api/graphql',
+    link: ApolloLink.from([
+        createHttpLink({
+            uri: '/api/graphql',
 // @ts-ignore
-        fetch: fetch,
-    })
+            fetch: fetch,
+        })
+    ])
 })
 
-export default ({ Component, pageProps }: any) => (
+export default ({Component, pageProps}: any) => (
     <ApolloProvider client={client}>
         <Component {...pageProps} />
     </ApolloProvider>
