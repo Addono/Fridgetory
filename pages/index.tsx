@@ -20,7 +20,7 @@ const Home = () => {
       </main>
 
       <footer>
-        <Divider>
+        <Divider plain>
           <a
             href={"https://aknapen.nl"}
             target="_blank"
