@@ -1,6 +1,6 @@
-import {Divider, Select, Spin, Tag} from "antd";
-import {gql, useMutation} from "@apollo/client";
-import {Item, QUERY_PLACES} from "../Places";
+import {Divider, Select, Tag} from "antd";
+import {ApolloClient, gql, useApolloClient, useMutation} from "@apollo/client";
+import {Item, QUERY_PLACES, QueryAllItemsByPlace} from "../Places";
 
 const quantities = [1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     .map(quantity => ({quantity, unit: "g"}))
@@ -22,6 +22,34 @@ const MUTATION_ADD_ITEM = gql`
     }
 `
 
+const updateItemInData = ({places, ...args}: QueryAllItemsByPlace, productId: number, item: Item): QueryAllItemsByPlace => ({
+    ...args,
+    places: places.map(({products, ...args}) => (
+        {
+            ...args,
+            products: products.map(({id, items, ...args}) => (
+                {
+                    id,
+                    ...args,
+                    items: productId === id ? items.concat([item]) : items,
+                })
+            )
+        })
+    )
+})
+
+const addItemToCache = ({productId, client, item}: { productId: number, client: ApolloClient<Object>, item: Item }) => {
+    const data: QueryAllItemsByPlace | null = client.readQuery({query: QUERY_PLACES})
+
+    // Only update the data if there was actually something in the cache
+    if (data) {
+        client.writeQuery({
+            query: QUERY_PLACES,
+            data: updateItemInData(data, productId, item)
+        })
+    }
+}
+
 const MUTATION_DELETE_ITEM = gql`
     mutation DeleteItem($id: Int!) {
         deleteOneItem(where: {id: $id}) {
@@ -31,18 +59,29 @@ const MUTATION_DELETE_ITEM = gql`
 `
 
 const Items = ({productId, name, items}: { productId: number, name: string, items: Item[] }) => {
-    const [addItem, {loading}] = useMutation(MUTATION_ADD_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
+    const [addItemMutation, {loading}] = useMutation(MUTATION_ADD_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
     const [deleteItem] = useMutation(MUTATION_DELETE_ITEM, {refetchQueries: [{query: QUERY_PLACES}]})
+    const client = useApolloClient()
+
+    const addItem = ({quantity, unit}: { quantity: number, unit: string }) => {
+        // Update the cache to immediately reflect the change
+        addItemToCache({productId, item: {quantity, unit, id: -1}, client})
+
+        // Execute the mutation for persistent storage of the change
+        addItemMutation({variables: {quantity, unit, productId}})
+    }
 
     return (
         <div style={{width: '100%'}}>
             <Divider>{name}</Divider>
             {items.map(({quantity, unit, id}, index) => (
-                <Tag closable key={id} onClose={(e: Event) => {
-                    e.preventDefault();
-
-                    deleteItem({variables: {id}})
-                }}>
+                <Tag
+                    closable={id >= 0} // Hide the close button for items merely existing in cache
+                    key={id}
+                    onClose={(e: Event) => {
+                        e.preventDefault();
+                        deleteItem({variables: {id}})
+                    }}>
                     {quantity}{unit}
                 </Tag>
             ))}
@@ -50,11 +89,10 @@ const Items = ({productId, name, items}: { productId: number, name: string, item
                 style={{width: '5em'}}
                 placeholder="Add"
                 value={[]}
-                onSelect={(index) => addItem({variables: {...quantities[index], productId}})}
+                onSelect={(index) => addItem(quantities[index])}
             >
                 {quantityOptions}
             </Select>
-            {loading && <Spin/>}
         </div>
     )
 }
