@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next start",
+    "start": "next start -p $PORT",
     "dev": "next dev",
     "test": "next build",
     "build": "yarn prisma:generate && yarn nexus build && next build",
