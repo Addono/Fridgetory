@@ -18,10 +18,20 @@ const MUTATION_EDIT_NAME_FOR_PLACE = gql`
     }
 `
 
+const MUTATION_DELETE_PLACE = gql`
+    mutation DeletePlace($id: Int!) {
+        deleteOnePlace(where: {id: $id}) {
+            id
+        }
+    }
+`
+
 const Title = ({name, id}: { name: string, id: number }) => {
     const [editing, setEditing] = useState<boolean>(false)
     const [newName, setNewName] = useState<string>(name)
+
     const [setNameMutation] = useMutation(MUTATION_EDIT_NAME_FOR_PLACE, {refetchQueries: [{query: QUERY_PLACES}]})
+    const [deletePlace] = useMutation(MUTATION_DELETE_PLACE, {refetchQueries: [{query: QUERY_PLACES}], variables: {id}})
 
     const setName = (name: string) => {
         setNameMutation({variables: {name, id}})
@@ -41,6 +51,13 @@ const Title = ({name, id}: { name: string, id: number }) => {
                 defaultValue={name}
                 value={newName}
                 onChange={({target: {value}}) => setNewName(value)}
+                addonBefore={
+                    <Tooltip title={"Delete"}>
+                        <DeleteTwoTone twoToneColor={"red"}
+                            onClick={() => deletePlace()}
+                        />
+                    </Tooltip>
+                }
                 addonAfter={
                     <Tooltip title="Save">
                         <SaveFilled

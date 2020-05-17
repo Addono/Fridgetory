@@ -23,9 +23,10 @@ schema.mutationType({
         t.crud.createOneProductType()
         t.crud.createOneItem()
         t.crud.createOnePlace()
-        t.crud.deleteOneItem()
         t.crud.updateOnePlace()
         t.crud.updateOneProductType()
+        t.crud.deleteOneItem()
+        t.crud.deleteOnePlace()
     }
 })
 
