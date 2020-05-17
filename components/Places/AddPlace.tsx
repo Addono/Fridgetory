@@ -6,7 +6,8 @@ import {
   useMutation,
 } from "@apollo/client";
 
-import { Button, Input } from "antd";
+import { Button, Input, Tooltip } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import { IPlace, QUERY_PLACES, QueryAllItemsByPlace } from "./index";
 
@@ -74,10 +75,12 @@ const AddPlace = () => {
         maxLength={50}
         disabled={loading}
         allowClear
+        addonAfter={
+          <Tooltip title="Add">
+            <PlusOutlined onClick={addPlace} />
+          </Tooltip>
+        }
       />
-      <Button disabled={loading || name.length === 0} onClick={addPlace}>
-        Add
-      </Button>
     </>
   );
 };
