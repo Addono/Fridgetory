@@ -45,6 +45,17 @@
       "pre-commit": "lint-staged"
     }
   },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,yaml,css,md}": "prettier --write"
   }
