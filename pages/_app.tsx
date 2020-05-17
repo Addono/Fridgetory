@@ -1,15 +1,9 @@
-import React from "react";
-import "../styles.css";
-import fetch from "node-fetch";
-import {
-  ApolloClient,
-  ApolloLink,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
+import React from 'react'
+import '../styles.css'
+import fetch from 'node-fetch'
+import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 
-const GRAPHQL_HOST = process.env.GRAPHQL_HOST ?? "";
+const GRAPHQL_HOST = process.env.GRAPHQL_HOST ?? ''
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -20,10 +14,10 @@ const client = new ApolloClient({
       fetch: fetch,
     }),
   ]),
-});
+})
 
 export default ({ Component, pageProps }: any) => (
   <ApolloProvider client={client}>
     <Component {...pageProps} />
   </ApolloProvider>
-);
+)

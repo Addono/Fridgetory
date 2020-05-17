@@ -1,15 +1,15 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { Product, QUERY_PLACES } from "../Places";
-import { Divider, Select } from "antd";
-import CreateNewProductType from "./CreateNewProductType";
+import { gql, useMutation, useQuery } from '@apollo/client'
+import { Product, QUERY_PLACES } from '../Places'
+import { Divider, Select } from 'antd'
+import CreateNewProductType from './CreateNewProductType'
 
 interface QueryAllProductTypes {
   productTypes: [
     {
-      id: number;
-      name: string;
+      id: number
+      name: string
     }
-  ];
+  ]
 }
 
 export const QUERY_ALL_PRODUCT_TYPES = gql`
@@ -19,44 +19,25 @@ export const QUERY_ALL_PRODUCT_TYPES = gql`
       name
     }
   }
-`;
+`
 
 const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
   mutation AddProductToPlace($productTypeId: Int!, $placeId: Int!) {
-    createOneProduct(
-      data: {
-        productType: { connect: { id: $productTypeId } }
-        place: { connect: { id: $placeId } }
-      }
-    ) {
+    createOneProduct(data: { productType: { connect: { id: $productTypeId } }, place: { connect: { id: $placeId } } }) {
       id
     }
   }
-`;
+`
 
-const AddProduct = ({
-  placeId,
-  existingProducts,
-}: {
-  placeId: number;
-  existingProducts: Product[];
-}) => {
-  const { loading, error, data } = useQuery<QueryAllProductTypes>(
-    QUERY_ALL_PRODUCT_TYPES,
-    { pollInterval: 10000 }
-  );
-  const [addProductToPlace, { loading: refetching }] = useMutation(
-    MUTATION_ADD_PRODUCT_TO_PLACE,
-    {
-      refetchQueries: [{ query: QUERY_PLACES }],
-    }
-  );
+const AddProduct = ({ placeId, existingProducts }: { placeId: number; existingProducts: Product[] }) => {
+  const { loading, error, data } = useQuery<QueryAllProductTypes>(QUERY_ALL_PRODUCT_TYPES, { pollInterval: 10000 })
+  const [addProductToPlace, { loading: refetching }] = useMutation(MUTATION_ADD_PRODUCT_TO_PLACE, {
+    refetchQueries: [{ query: QUERY_PLACES }],
+  })
 
-  if (loading || error || !data?.productTypes) return null;
+  if (loading || error || !data?.productTypes) return null
 
-  const namesOfExistingProductTypes = existingProducts.map(
-    ({ productType: { name } }) => name
-  );
+  const namesOfExistingProductTypes = existingProducts.map(({ productType: { name } }) => name)
 
   const availableProductOptions = data.productTypes
     // Remove all product types which are already in this element
@@ -66,7 +47,7 @@ const AddProduct = ({
       <Select.Option key={id} value={id}>
         {name}
       </Select.Option>
-    ));
+    ))
 
   return (
     <Select
@@ -76,16 +57,13 @@ const AddProduct = ({
         })
       }
       disabled={refetching}
-      style={{ width: "100%" }}
-      placeholder={"Add product"}
+      style={{ width: '100%' }}
+      placeholder={'Add product'}
       dropdownRender={(menu) => (
         <div>
           {menu}
-          <Divider style={{ margin: "4px 0" }} />
-          <div
-            key={"new"}
-            style={{ display: "flex", flexWrap: "nowrap", padding: 8 }}
-          >
+          <Divider style={{ margin: '4px 0' }} />
+          <div key={'new'} style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
             <CreateNewProductType />
           </div>
         </div>
@@ -93,7 +71,7 @@ const AddProduct = ({
     >
       {availableProductOptions}
     </Select>
-  );
-};
+  )
+}
 
-export default AddProduct;
+export default AddProduct

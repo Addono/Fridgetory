@@ -1,6 +1,6 @@
-import Head from "next/head";
-import { Col, Divider, PageHeader, Row } from "antd";
-import Places from "../components/Places";
+import Head from 'next/head'
+import { Col, Divider, PageHeader, Row } from 'antd'
+import Places from '../components/Places'
 
 const Home = () => {
   return (
@@ -22,18 +22,13 @@ const Home = () => {
 
       <footer>
         <Divider plain>
-          <a
-            href={"https://aknapen.nl"}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "grey" }}
-          >
+          <a href={'https://aknapen.nl'} target="_blank" rel="noopener noreferrer" style={{ color: 'grey' }}>
             2020&nbsp;©&nbsp;Adriaan Knapen
           </a>
         </Divider>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
