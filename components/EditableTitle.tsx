@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Divider, Input, Tooltip } from "antd";
+import { Divider, Input, Space, Tooltip } from "antd";
 import { EditOutlined, SaveFilled, DeleteTwoTone } from "@ant-design/icons";
 
 export const EditableTitle = ({
@@ -53,7 +53,8 @@ export const EditableTitle = ({
     return (
       <>
         {name}
-        <Divider type={"vertical"} />
+        &nbsp;
+        <Space size={"large"} direction={"horizontal"} />
         <EditButton />
       </>
     );
