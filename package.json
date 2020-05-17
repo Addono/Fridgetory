@@ -9,9 +9,7 @@
     "build": "yarn prisma:generate && yarn nexus build && next build",
     "nexus:reflection": "nexus dev --reflection --entrypoint pages/api/graphql.ts",
     "nexus:check": "nexus build --entrypoint pages/api/graphql.ts && nexus build --entrypoint pages/api/playground.ts",
-    "prisma:generate": "prisma generate",
-    "deploy:preview": "now",
-    "deploy:prod": "now --prod"
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.48",
