@@ -33,44 +33,41 @@ const Title = ({name, id}: { name: string, id: number }) => {
     const [setNameMutation] = useMutation(MUTATION_EDIT_NAME_FOR_PLACE, {refetchQueries: [{query: QUERY_PLACES}]})
     const [deletePlace] = useMutation(MUTATION_DELETE_PLACE, {refetchQueries: [{query: QUERY_PLACES}], variables: {id}})
 
-    const setName = (name: string) => {
-        setNameMutation({variables: {name, id}})
-    }
-
-    const EditButton = () => (
-        <Tooltip title="Edit">
-            <EditOutlined
-                onClick={() => setEditing(true)}
-            />
-        </Tooltip>
-    )
-
     if (editing) {
+        const save = () => {
+            setNameMutation({variables: {name: newName, id}})
+            setEditing(false)
+        }
+
+        const SaveButton = () => (
+            <Tooltip title="Save">
+                <SaveFilled onClick={save} />
+            </Tooltip>
+        )
+
+        const DeleteButton = () => (
+            <Tooltip title={"Delete"}>
+                <DeleteTwoTone twoToneColor={"red"} onClick={() => deletePlace()} />
+            </Tooltip>
+        )
+
         return (
             <Input
                 defaultValue={name}
                 value={newName}
                 onChange={({target: {value}}) => setNewName(value)}
-                addonBefore={
-                    <Tooltip title={"Delete"}>
-                        <DeleteTwoTone twoToneColor={"red"}
-                            onClick={() => deletePlace()}
-                        />
-                    </Tooltip>
-                }
-                addonAfter={
-                    <Tooltip title="Save">
-                        <SaveFilled
-                            onClick={() => {
-                                setName(newName)
-                                setEditing(false)
-                            }}
-                        />
-                    </Tooltip>
-                }
+                onPressEnter={save}
+                addonBefore={<DeleteButton/>}
+                addonAfter={<SaveButton/>}
             />
         )
     } else {
+        const EditButton = () => (
+            <Tooltip title="Edit">
+                <EditOutlined onClick={() => setEditing(true)}/>
+            </Tooltip>
+        )
+
         return (
             <>
                 {name}
