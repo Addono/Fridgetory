@@ -1,6 +1,6 @@
-import app, { server } from 'nexus'
-import '../../graphql/schema'
+import app, { server } from "nexus";
+import "../../graphql/schema";
 
-app.assemble()
+app.assemble();
 
-export default server.handlers.graphql
+export default server.handlers.graphql;

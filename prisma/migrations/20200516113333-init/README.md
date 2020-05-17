@@ -77,5 +77,3 @@ migration ..20200516113333-init
 +  products Product[]
 +}
 ```
-
-

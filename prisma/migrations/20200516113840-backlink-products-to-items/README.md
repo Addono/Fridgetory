@@ -34,5 +34,3 @@ migration 20200516113333-init..20200516113840-backlink-products-to-items
  model Item {
    id Int @default(autoincrement()) @id
 ```
-
-
