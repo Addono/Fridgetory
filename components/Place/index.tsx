@@ -1,4 +1,4 @@
-import {Button, Card, Divider, Input, Space, Tooltip} from 'antd';
+import {Card, Divider, Input, Tooltip} from 'antd';
 
 import {Product, QUERY_PLACES} from "../Places";
 import AddProduct from "../AddProduct";
