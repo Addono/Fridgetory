@@ -2,6 +2,7 @@
   "name": "fridgetory",
   "version": "0.1.0",
   "private": false,
+  "license": "MIT",
   "scripts": {
     "start": "next start -p $PORT",
     "dev": "next dev",
