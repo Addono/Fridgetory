@@ -2,33 +2,32 @@ import {useState} from "react";
 import {gql, useMutation} from "@apollo/client";
 import {Input, Spin} from "antd";
 import {PlusOutlined} from '@ant-design/icons';
-import {MUTATION_ADD_PRODUCT_TO_PLACE} from "./index";
+import {QUERY_ALL_PRODUCT_TYPES} from "./index";
 
 const MUTATION_CREATE_PRODUCT = gql`
-    mutation CreateProduct($name: String!, $placeId: Int!) {
-        createOneProduct(data: {
-            productType: {create: {name: $name}}
-            place: {connect: {id: $placeId}}
+    mutation CreateProductType($name: String!) {
+        createOneProductType(data: {
+            name: $name,
         }) {
             id
         }
     }
 `
 
-const CreateNewProductType = ({placeId}: { placeId: number }) => {
+const CreateNewProductType = () => {
     const [newProductTypeName, setNewProductTypeName] = useState<string>("")
-    const [createProduct, {loading}] = useMutation(MUTATION_CREATE_PRODUCT, {refetchQueries: [{query: MUTATION_ADD_PRODUCT_TO_PLACE}]})
+    const [createProduct, {loading}] = useMutation(MUTATION_CREATE_PRODUCT, {refetchQueries: [{query: QUERY_ALL_PRODUCT_TYPES}]})
 
     return <>
         <Input style={{flex: 'auto'}} value={newProductTypeName}
                onChange={({target: {value}}) => setNewProductTypeName(value)}/>
-        {loading ? <Spin />
+        {loading ? <Spin/>
             :
             <a
                 style={{flex: 'none', padding: '8px', display: 'block', cursor: 'pointer'}}
                 onClick={() => {
                     setNewProductTypeName("")
-                    createProduct({variables: {placeId, name: newProductTypeName}})
+                    createProduct({variables: {name: newProductTypeName}})
                 }}
             >
                 <PlusOutlined/> New

@@ -11,7 +11,7 @@ interface QueryAllProductTypes {
     }]
 }
 
-const QUERY_ALL_PRODUCT_TYPES = gql`
+export const QUERY_ALL_PRODUCT_TYPES = gql`
     query {
         productTypes {
             id
@@ -20,7 +20,7 @@ const QUERY_ALL_PRODUCT_TYPES = gql`
     }
 `
 
-export const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
+const MUTATION_ADD_PRODUCT_TO_PLACE = gql`
     mutation AddProductToPlace($productTypeId: Int!, $placeId: Int!) {
         createOneProduct(data: {
             productType: {connect: {id: $productTypeId}}
@@ -58,7 +58,7 @@ const AddProduct = ({placeId, existingProducts}: { placeId: number, existingProd
                     {menu}
                     <Divider style={{margin: '4px 0'}}/>
                     <div key={"new"} style={{display: 'flex', flexWrap: 'nowrap', padding: 8}}>
-                        <CreateNewProductType placeId={placeId}/>
+                        <CreateNewProductType />
                     </div>
                 </div>
             )}>
