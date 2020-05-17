@@ -6,7 +6,7 @@
   "scripts": {
     "start": "next start -p $PORT",
     "dev": "next dev",
-    "test": "next build",
+    "test": "yarn build",
     "build": "yarn prisma:generate && yarn nexus build && next build",
     "nexus:reflection": "nexus dev --reflection --entrypoint pages/api/graphql.ts",
     "nexus:check": "nexus build --entrypoint pages/api/graphql.ts && nexus build --entrypoint pages/api/playground.ts",
