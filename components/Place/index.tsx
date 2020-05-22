@@ -1,4 +1,4 @@
-import { Card, Divider } from 'antd'
+import { Card, Space } from 'antd'
 
 import { gql, useMutation } from '@apollo/client'
 
@@ -41,12 +41,13 @@ const Title = ({ name, id }: { name: string; id: number }) => {
 }
 
 const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => (
-  <Card title={<Title name={name} id={id} />} style={{ width: '100%' }}>
-    {products.map(({ id, items, productType: { name } }) => (
-      <Items productId={id} key={name} name={name} items={items} />
-    ))}
-    <Divider />
-    <AddProduct placeId={id} existingProducts={products} />
+  <Card title={<Title name={name} id={id} />}>
+    <Space direction={'vertical'} style={{ width: '100%' }}>
+      {products.map(({ id, items, productType: { name } }) => (
+        <Items productId={id} key={name} name={name} items={items} />
+      ))}
+      <AddProduct placeId={id} existingProducts={products} />
+    </Space>
   </Card>
 )
 
