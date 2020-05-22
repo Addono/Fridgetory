@@ -126,7 +126,7 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
   return (
     <div style={{ width: '100%' }}>
       <b>
-        <ProductTypeTitle productId={productId} name={name} />
+        <ProductTypeTitle productId={productId} name={name} canDelete={items.length === 0} />
       </b>
       <Divider type={'vertical'} />
 

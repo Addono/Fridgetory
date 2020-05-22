@@ -18,7 +18,7 @@ const MUTATION_DELETE_PRODUCT = gql`
   }
 `
 
-const ProductTypeTitle = ({ name, productId }: { name: string; productId: number }) => {
+const ProductTypeTitle = ({ name, productId, canDelete }: { name: string; productId: number; canDelete: boolean }) => {
   const [setNameMutation] = useMutation(MUTATION_EDIT_NAME_FOR_PRODUCT_TYPE, {
     refetchQueries: [{ query: QUERY_PLACES }],
   })
@@ -30,7 +30,7 @@ const ProductTypeTitle = ({ name, productId }: { name: string; productId: number
     <EditableTitle
       name={name}
       setName={(newName) => setNameMutation({ variables: { oldName: name, newName } })}
-      onDelete={() => deleteProduct({ variables: { productId } })}
+      onDelete={canDelete ? () => deleteProduct({ variables: { productId } }) : undefined}
     />
   )
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Input, Space, Tooltip } from 'antd'
-import { EditOutlined, SaveFilled, DeleteTwoTone } from '@ant-design/icons'
+import { EditOutlined, SaveFilled, DeleteTwoTone, DeleteOutlined } from '@ant-design/icons'
 
 export const EditableTitle = ({
   name,
@@ -10,7 +10,7 @@ export const EditableTitle = ({
 }: {
   name: string
   setName: (name: string) => void
-  onDelete: () => void
+  onDelete?: () => void
 }) => {
   const [editing, setEditing] = useState<boolean>(false)
   const [newName, setNewName] = useState<string>(name)
@@ -29,7 +29,11 @@ export const EditableTitle = ({
 
     const DeleteButton = () => (
       <Tooltip title={'Delete'}>
-        <DeleteTwoTone twoToneColor={'red'} onClick={() => onDelete()} />
+        {onDelete ? (
+          <DeleteTwoTone twoToneColor={'red'} onClick={() => onDelete()} />
+        ) : (
+          <DeleteTwoTone twoToneColor={'lightgrey'} />
+        )}
       </Tooltip>
     )
 
