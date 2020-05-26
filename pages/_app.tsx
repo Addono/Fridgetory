@@ -19,7 +19,8 @@ export default ({ Component, pageProps }: any) => {
     const getClient = async () => {
       await persistCache({
         cache,
-        storage: localStorage,
+        // @ts-ignore
+        storage: window.localStorage,
       })
 
       const client = new ApolloClient({
