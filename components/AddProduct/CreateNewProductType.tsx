@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
-import { Input, Spin } from 'antd'
+import { Input } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { QUERY_ALL_PRODUCT_TYPES } from './index'
+import Loading from '../Loading'
 
 const MUTATION_CREATE_PRODUCT = gql`
   mutation CreateProductType($name: String!) {
@@ -26,7 +27,7 @@ const CreateNewProductType = () => {
         onChange={({ target: { value } }) => setNewProductTypeName(value)}
       />
       {loading ? (
-        <Spin />
+        <Loading />
       ) : (
         <a
           style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}

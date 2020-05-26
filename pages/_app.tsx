@@ -2,8 +2,11 @@ import React, { useEffect } from 'react'
 import '../styles.css'
 import fetch from 'node-fetch'
 import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
-import { persistCache } from 'apollo-cache-persist'
 import { useState } from 'react'
+
+import { persistCache } from 'apollo-cache-persist'
+
+import Loading from '../components/Loading'
 
 const GRAPHQL_HOST = process.env.GRAPHQL_HOST ?? ''
 
@@ -43,6 +46,6 @@ export default ({ Component, pageProps }: any) => {
       <Component {...pageProps} />
     </ApolloProvider>
   ) : (
-    <p>Loading...</p>
+    <Loading />
   )
 }
