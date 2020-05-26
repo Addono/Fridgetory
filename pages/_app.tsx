@@ -1,23 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../styles.css'
 import fetch from 'node-fetch'
 import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
+import { persistCache } from 'apollo-cache-persist'
+import { useState } from 'react'
 
 const GRAPHQL_HOST = process.env.GRAPHQL_HOST ?? ''
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: ApolloLink.from([
-    createHttpLink({
-      uri: `${GRAPHQL_HOST}/api/graphql`,
-      // @ts-ignore
-      fetch: fetch,
-    }),
-  ]),
-})
+const cache = new InMemoryCache()
 
-export default ({ Component, pageProps }: any) => (
-  <ApolloProvider client={client}>
-    <Component {...pageProps} />
-  </ApolloProvider>
-)
+export default ({ Component, pageProps }: any) => {
+  const [client, setClient] = useState<ApolloClient<Object> | undefined>()
+
+  useEffect(() => {
+    const getClient = async () => {
+      await persistCache({
+        cache,
+        storage: localStorage,
+      })
+
+      const client = new ApolloClient({
+        cache,
+        link: ApolloLink.from([
+          createHttpLink({
+            uri: `${GRAPHQL_HOST}/api/graphql`,
+            // @ts-ignore
+            fetch: fetch,
+          }),
+        ]),
+      })
+
+      setClient(client)
+    }
+
+    if (!client) {
+      getClient()
+    }
+  }, [])
+
+  return client ? (
+    <ApolloProvider client={client}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  ) : (
+    <p>Loading...</p>
+  )
+}
