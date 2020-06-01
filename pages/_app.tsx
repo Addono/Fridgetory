@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
-import '../styles.css'
-import fetch from 'node-fetch'
-import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { persistCache } from 'apollo-cache-persist'
+import fetch from 'node-fetch'
 
 import Loading from '../components/Loading'
 
-const GRAPHQL_HOST = process.env.GRAPHQL_HOST ?? ''
+import '../styles.css'
 
 const cache = new InMemoryCache()
 
@@ -27,7 +25,7 @@ export default ({ Component, pageProps }: any) => {
         cache,
         link: ApolloLink.from([
           createHttpLink({
-            uri: `${GRAPHQL_HOST}/api/graphql`,
+            uri: '/api/graphql',
             // @ts-ignore
             fetch: fetch,
           }),
