@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.48",
-    "@prisma/client": "2.0.0-beta.4",
+    "@prisma/client": "2.0.0-beta.6",
     "antd": "^4.3.0",
     "apollo-cache-persist": "^0.1.1",
     "graphql": "^15.0.0",
