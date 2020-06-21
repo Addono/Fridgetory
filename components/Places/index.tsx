@@ -57,7 +57,8 @@ const Places = () => {
   })
 
   if (loading) return <Loading />
-  if (error) return <p>Something didn't really work out 😿</p>
+  if (error)
+    return <p>Ooh no, something went wrong 😿. Sometimes reloading the page works, so you could try that 🤷🏻‍♀️.</p>
   if (!data) return <p>Couldn't find anything, try adding something!</p>
 
   return (
