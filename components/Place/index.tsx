@@ -40,12 +40,21 @@ const Title = ({ name, id }: { name: string; id: number }) => {
   )
 }
 
+const removeNonAscii = (s: string): string => s.replace(/[^\x00-\x7F]/g, '')
+
+const sortProductByName = (
+  { productType: { name: nameThis } }: Product,
+  { productType: { name: nameOther } }: Product
+): number => removeNonAscii(nameThis).trim().localeCompare(removeNonAscii(nameOther).trim())
+
 const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => (
   <Card title={<Title name={name} id={id} />}>
     <Space direction={'vertical'} style={{ width: '100%' }}>
-      {products.map(({ id, items, productType: { name } }) => (
-        <Items productId={id} key={name} name={name} items={items} />
-      ))}
+      {Array.from(products)
+        .sort(sortProductByName)
+        .map(({ id, items, productType: { name } }) => (
+          <Items productId={id} key={name} name={name} items={items} />
+        ))}
       <AddProduct placeId={id} existingProducts={products} />
     </Space>
   </Card>
