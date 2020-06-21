@@ -2,7 +2,7 @@ import { use } from 'nexus'
 import { prisma } from 'nexus-plugin-prisma'
 import { schema } from 'nexus/dist'
 
-use(prisma())
+use(prisma({ features: { crud: true } }))
 
 schema.queryType({
   definition: (t) => {
