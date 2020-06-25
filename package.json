@@ -35,7 +35,7 @@
     "husky": ">=4",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "semantic-release": "^17.0.8",
+    "semantic-release": "^17.1.0",
     "ts-node": "^8.10.2"
   },
   "prettier": {
