@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Input, Space, Tooltip } from 'antd'
-import { EditOutlined, SaveFilled, DeleteTwoTone, DeleteOutlined } from '@ant-design/icons'
+import { EditOutlined, SaveFilled, DeleteTwoTone } from '@ant-design/icons'
 
 export const EditableTitle = ({
   name,
