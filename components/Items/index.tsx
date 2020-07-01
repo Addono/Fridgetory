@@ -3,10 +3,13 @@ import { ApolloClient, gql, useApolloClient, useMutation } from '@apollo/client'
 import { Item, QUERY_PLACES, QueryAllItemsByPlace } from '../Places'
 import ProductTypeTitle from './ProductTypeTitle'
 
-const quantities = [1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map((quantity) => ({
-  quantity,
-  unit: 'g',
-}))
+const quantities = [
+  ...[1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].flatMap((quantity) => [
+    { quantity, unit: 'g' },
+    { quantity, unit: 'ml' },
+  ]),
+  ...[1, 2, 3, 4, 5, 6, 7, 8].map((quantity) => ({ quantity, unit: '' })),
+]
 
 const quantityOptions = quantities.map(({ quantity, unit }, index) => (
   <Select.Option key={index} value={index} style={{ width: '100px' }}>
