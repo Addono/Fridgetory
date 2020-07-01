@@ -3,7 +3,7 @@
   "short_name": "Fridgetory",
   "theme_color": "#252525",
   "background_color": "#ffffff",
-  "display": "minimal-ui",
+  "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
