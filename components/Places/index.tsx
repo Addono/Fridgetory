@@ -1,10 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 
-import { Space } from 'antd'
+import { Space, Result, Button } from 'antd'
 
 import Place from '../Place'
 import AddPlace from './AddPlace'
 import Loading from '../Loading'
+import { useState } from 'react'
 
 export interface Item {
   id: number
@@ -50,16 +51,44 @@ export const QUERY_PLACES = gql`
   }
 `
 
+const RetryButton = ({ refetch, duration = 2000 }: { refetch: () => void; duration?: number }) => {
+  const [refetching, setRefetching] = useState<boolean>(false)
+
+  return (
+    <Button
+      type={'primary'}
+      onClick={() => {
+        refetch()
+        setRefetching(true)
+        setTimeout(() => setRefetching(false), duration)
+      }}
+      loading={refetching}
+    >
+      Retry
+    </Button>
+  )
+}
+
 const Places = () => {
-  const { loading, error, data } = useQuery<QueryAllItemsByPlace>(QUERY_PLACES, {
+  const { loading, error, data, refetch } = useQuery<QueryAllItemsByPlace>(QUERY_PLACES, {
     pollInterval: 60000,
     fetchPolicy: 'cache-first',
   })
 
   if (loading) return <Loading />
-  if (error)
-    return <p>Ooh no, something went wrong 😿. Sometimes reloading the page works, so you could try that 🤷🏻‍♀️.</p>
-  if (!data) return <p>Couldn't find anything, try adding something!</p>
+  if (error) {
+    return (
+      <Result
+        status="500"
+        title="500"
+        subTitle="Sorry, something went wrong when getting the latest data."
+        extra={<RetryButton refetch={refetch} />}
+      />
+    )
+  }
+  if (!data) {
+    return <Result status="404" title="It's empty" subTitle="Nothing here. Try adding something!" />
+  }
 
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
