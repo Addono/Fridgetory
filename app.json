@@ -1,0 +1,21 @@
+{
+  "name": "Fridgetory",
+  "description": "A web app to track the stuff in your freezer or fridge.",
+  "keywords": [
+    "GraphQL",
+    "NodeJS",
+    "Prisma",
+    "PostgreSQL",
+    "NextJS"
+  ],
+  "website": "https://github.com/Addono/Fridgetory",
+  "repository": "https://github.com/Addono/Fridgetory",
+  "logo": "https://raw.githubusercontent.com/Addono/Fridgetory/master/public/favicon-96x96.png",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "yarn prisma:migrate"
+  },
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
