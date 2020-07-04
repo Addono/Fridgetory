@@ -43,3 +43,27 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+
+### Heroku
+
+We support one-click deployments using Heroku. Go on, try it!
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+### Vercel
+
+If you want to deploy using Vercel, you will need to provision a Postgres database yourself.
+
+First, add the database as a secret:
+
+```bash
+vercel secrets add fridgetory-database-url VALUE_OF_YOUR_DATABASE_LOCATION_HERE
+```
+
+Then deploy:
+
+```bash
+vercel --prod
+```
