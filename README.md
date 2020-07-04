@@ -33,7 +33,7 @@ yarn prisma:migrate && yarn prisma:generate
 Generate and watch for changed made by Nexus:
 
 ```bash
-yarn nexus:reflect
+yarn nexus:reflection
 ```
 
 Then to run the development server in a different shell:
