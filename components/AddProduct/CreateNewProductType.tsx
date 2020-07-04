@@ -1,7 +1,10 @@
 import { useState } from 'react'
+
 import { gql, useMutation } from '@apollo/client'
+
 import { Input } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+
 import { QUERY_ALL_PRODUCT_TYPES } from './index'
 import Loading from '../Loading'
 
@@ -19,23 +22,25 @@ const CreateNewProductType = () => {
     refetchQueries: [{ query: QUERY_ALL_PRODUCT_TYPES }],
   })
 
+  const submit = () => {
+    if (newProductTypeName.length > 0) {
+      setNewProductTypeName('')
+      createProduct({ variables: { name: newProductTypeName } })
+    }
+  }
+
   return (
     <>
       <Input
         style={{ flex: 'auto' }}
         value={newProductTypeName}
         onChange={({ target: { value } }) => setNewProductTypeName(value)}
+        onPressEnter={submit}
       />
       {loading ? (
         <Loading />
       ) : (
-        <a
-          style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
-          onClick={() => {
-            setNewProductTypeName('')
-            createProduct({ variables: { name: newProductTypeName } })
-          }}
-        >
+        <a style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }} onClick={submit}>
           <PlusOutlined /> New
         </a>
       )}
