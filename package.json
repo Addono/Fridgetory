@@ -1,6 +1,6 @@
 {
   "name": "fridgetory",
-  "version": "0.1.0",
+  "version": "1.8.0",
   "private": false,
   "license": "MIT",
   "scripts": {
@@ -57,9 +57,12 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      ["@semantic-release/npm", {
-        "npmPublish": false
-      }],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
       "@semantic-release/git",
       "@semantic-release/github"
     ]
