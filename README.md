@@ -1,5 +1,9 @@
 # Fridgetory
 
+<div align="center">
+  <img src="./docs/imgs/screenshot.jpg" width="300px" />
+</div>
+
 ## Getting Started
 
 Install dependencies:
