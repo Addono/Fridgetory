@@ -75,7 +75,13 @@ const Places = () => {
     fetchPolicy: 'cache-first',
   })
 
-  if (loading) return <Loading />
+  if (loading) {
+    return (
+      <div style={{ textAlign: 'center', width: '100%', marginTop: '3em' }}>
+        <Loading />
+      </div>
+    )
+  }
   if (error) {
     return (
       <Result
