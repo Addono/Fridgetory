@@ -75,6 +75,7 @@ const Places = () => {
     fetchPolicy: 'cache-first',
   })
 
+  // Show a loading indicator
   if (loading) {
     return (
       <div style={{ textAlign: 'center', width: '100%', marginTop: '3em' }}>
@@ -82,6 +83,8 @@ const Places = () => {
       </div>
     )
   }
+
+  // Handle the case if there's an error
   if (error) {
     return (
       <Result
@@ -92,6 +95,8 @@ const Places = () => {
       />
     )
   }
+
+  // Handle the case where we received no data
   if (!data) {
     return <Result status="404" title="It's empty" subTitle="Nothing here. Try adding something!" />
   }
