@@ -19,7 +19,6 @@
     "@prisma/client": "^2.1.3",
     "antd": "^4.4.0",
     "apollo-cache-persist": "^0.1.1",
-    "graphql": "^15.2.0",
     "next": "^9.4.2",
     "next-pwa": "^3.0.1",
     "nexus": "^0.25.0",
@@ -28,6 +27,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typescript": "^3.9.6"
+  },
+  "resolution": {
+    "graphql": "^15.2.0"
   },
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.7",
