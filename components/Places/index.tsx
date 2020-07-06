@@ -71,7 +71,7 @@ const RetryButton = ({ refetch, duration = 2000 }: { refetch: () => void; durati
 
 const Places = () => {
   const { loading, error, data, refetch } = useQuery<QueryAllItemsByPlace>(QUERY_PLACES, {
-    pollInterval: 60000,
+    pollInterval: 5000,
     fetchPolicy: 'cache-first',
   })
 
