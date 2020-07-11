@@ -7,6 +7,8 @@ import AddProduct from '../AddProduct'
 import Items from '../Items'
 import { EditableTitle } from '../EditableTitle'
 
+import { sortByStringField, removeNonAscii } from '../util'
+
 const MUTATION_EDIT_NAME_FOR_PLACE = gql`
   mutation EditNameForPlace($name: String!, $id: Int!) {
     updateOnePlace(where: { id: $id }, data: { name: $name }) {
@@ -40,12 +42,7 @@ const Title = ({ name, id }: { name: string; id: number }) => {
   )
 }
 
-const removeNonAscii = (s: string): string => s.replace(/[^\x00-\x7F]/g, '')
-
-const sortProductByName = (
-  { productType: { name: nameThis } }: Product,
-  { productType: { name: nameOther } }: Product
-): number => removeNonAscii(nameThis).trim().localeCompare(removeNonAscii(nameOther).trim())
+const sortProductByName = sortByStringField<Product>((product) => product.productType.name, removeNonAscii)
 
 const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => (
   <Card title={<Title name={name} id={id} />}>
