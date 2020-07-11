@@ -2,6 +2,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { Product, QUERY_PLACES } from '../Places'
 import { Divider, Select } from 'antd'
 import CreateNewProductType from './CreateNewProductType'
+import { sortByStringField, removeNonAscii } from '../util'
 
 interface QueryAllProductTypes {
   productTypes: [
@@ -42,6 +43,8 @@ const AddProduct = ({ placeId, existingProducts }: { placeId: number; existingPr
   const availableProductOptions = data.productTypes
     // Remove all product types which are already in this element
     .filter(({ name }) => !namesOfExistingProductTypes.includes(name))
+    // Sort product list by name
+    .sort(sortByStringField((t) => t.name, removeNonAscii))
     // Render each product type as an <Option />
     .map(({ id, name }) => (
       <Select.Option key={id} value={id}>
