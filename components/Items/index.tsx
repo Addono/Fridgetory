@@ -7,7 +7,7 @@ const amountsWithUnit = [1, 5, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 
 
 const quantities = [
   ...amountsWithUnit.map((quantity) => ({ quantity, unit: 'g' })),
-  ...[1, 2, 3, 4, 5, 6, 7, 8].map((quantity) => ({ quantity, unit: '' })),
+  ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((quantity) => ({ quantity, unit: '' })),
   ...amountsWithUnit.map((quantity) => ({ quantity, unit: 'ml' })),
 ]
 
