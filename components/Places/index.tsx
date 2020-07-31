@@ -78,7 +78,7 @@ const Places = () => {
   // Show a loading indicator
   if (loading) {
     return (
-      <div style={{ textAlign: 'center', width: '100%', marginTop: '3em' }}>
+      <div style={{ display: 'grid', placeItems: 'center', width: '100%', marginTop: '3em' }}>
         <Loading />
       </div>
     )
