@@ -1,6 +1,5 @@
-import { use } from 'nexus'
+import { use, schema } from 'nexus'
 import { prisma } from 'nexus-plugin-prisma'
-import { schema } from 'nexus/dist'
 
 use(prisma({ features: { crud: true } }))
 
