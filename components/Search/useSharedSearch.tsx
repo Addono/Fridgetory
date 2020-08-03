@@ -7,6 +7,7 @@ const defaultValue: SearchType = ''
 const defaultContext = {
   searchQuery: defaultValue,
   setSearchQuery: (value: SearchType) => {},
+  resetSearchQuery: () => {},
 }
 
 export const SharedSearchContext = createContext(defaultContext)
@@ -14,7 +15,13 @@ export const SharedSearchContext = createContext(defaultContext)
 export const SharedSearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchQuery, setSearchQuery] = useState<SearchType>(defaultValue)
 
-  return <SharedSearchContext.Provider value={{ searchQuery, setSearchQuery }}>{children}</SharedSearchContext.Provider>
+  const contextValue = {
+    searchQuery,
+    setSearchQuery,
+    resetSearchQuery: () => setSearchQuery(defaultValue),
+  }
+
+  return <SharedSearchContext.Provider value={contextValue}>{children}</SharedSearchContext.Provider>
 }
 
 const useSharedSearch = (): typeof defaultContext => {
