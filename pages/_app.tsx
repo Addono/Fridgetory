@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
 import Head from 'next/head'
-import { Layout, Menu, Typography, Row, Col } from 'antd'
+import { Layout, Row, Col } from 'antd'
 
 import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { persistCache } from 'apollo-cache-persist'
 import fetch from 'node-fetch'
 
 import Loading from '../components/Loading'
-
-import '../styles.css'
-import { Item } from '../components/Places/index'
 import { SharedSearchProvider } from '../components/Search/useSharedSearch'
 import SearchInput from '../components/Search/SearchInput'
+
+import '../styles.css'
 
 const cache = new InMemoryCache()
 
