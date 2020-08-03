@@ -5,18 +5,16 @@ type SearchType = string
 const defaultValue: SearchType = ''
 
 const defaultContext = {
-  sharedSearch: defaultValue,
-  setSharedSearch: (value: SearchType) => {},
+  searchQuery: defaultValue,
+  setSearchQuery: (value: SearchType) => {},
 }
 
 export const SharedSearchContext = createContext(defaultContext)
 
 export const SharedSearchProvider = ({ children }: { children: React.ReactNode }) => {
-  const [sharedSearch, setSharedSearch] = useState<SearchType>(defaultValue)
+  const [searchQuery, setSearchQuery] = useState<SearchType>(defaultValue)
 
-  return (
-    <SharedSearchContext.Provider value={{ sharedSearch, setSharedSearch }}>{children}</SharedSearchContext.Provider>
-  )
+  return <SharedSearchContext.Provider value={{ searchQuery, setSearchQuery }}>{children}</SharedSearchContext.Provider>
 }
 
 const useSharedSearch = (): typeof defaultContext => {

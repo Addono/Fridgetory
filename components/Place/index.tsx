@@ -46,14 +46,14 @@ const Title = ({ name, id }: { name: string; id: number }) => {
 const sortProductByName = sortByStringField<Product>((product) => product.productType.name, removeNonAscii)
 
 const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => {
-  const { sharedSearch } = useSharedSearch()
+  const { searchQuery } = useSharedSearch()
 
   return (
     <Card title={<Title name={name} id={id} />}>
       <Space direction={'vertical'} style={{ width: '100%' }}>
         {Array.from(products)
           // Case insensitive filter to check if the items should be shown
-          .filter(({ productType }) => productType.name.toLowerCase().includes(sharedSearch.toLowerCase()))
+          .filter(({ productType }) => productType.name.toLowerCase().includes(searchQuery.toLowerCase()))
           // Sort the products based on their name
           .sort(sortProductByName)
           // Render each product
