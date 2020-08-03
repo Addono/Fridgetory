@@ -64,13 +64,22 @@ const HiddenItemsText = ({ amount }: { amount: number }) => {
   )
 }
 
-const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => {
+const isVisible = ({ productType: { name } }: Product): boolean => {
   const { searchQuery } = useSharedSearch()
 
+  // Format both the name and search query to be case insensitive
+  const formattedName = name.trim().toLowerCase()
+  const formattedQuery = searchQuery.trim().toLowerCase()
+
+  // Check if the name includes the search query
+  return formattedName.includes(formattedQuery)
+}
+
+const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => {
   const labeledProducts = Array.from(products).map((product) => ({
     product,
     // Case check if the items should be visible
-    visible: product.productType.name.toLowerCase().includes(searchQuery.toLowerCase()),
+    visible: isVisible(product),
   }))
 
   const visibleProducts: Product[] = labeledProducts
