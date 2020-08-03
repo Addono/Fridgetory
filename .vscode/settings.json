@@ -1088,5 +1088,6 @@
     "node_modules/yn": true,
     "node_modules/zen-observable": true,
     "node_modules/zip-stream": true
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
