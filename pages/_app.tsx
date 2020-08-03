@@ -16,7 +16,7 @@ import SearchInput from '../components/Search/SearchInput'
 
 const cache = new InMemoryCache()
 
-const ProvideApollo = ({ children }: any) => {
+const ProvideApollo = ({ children }: { children: React.ReactNode }) => {
   const [client, setClient] = useState<ApolloClient<Object> | undefined>()
 
   useEffect(() => {
