@@ -3,12 +3,12 @@ import { Input } from 'antd'
 import useSharedSearch from './useSharedSearch'
 
 const SearchInput = () => {
-  const { search, setSearch } = useSharedSearch()
+  const { sharedSearch, setSharedSearch } = useSharedSearch()
 
   return (
     <Input
-      onChange={(event) => setSearch(event.target.value)}
-      value={search}
+      onChange={(event) => setSharedSearch(event.target.value)}
+      value={sharedSearch}
       placeholder={'Search'}
       allowClear
       style={{ width: '100%', maxWidth: '20em' }}
