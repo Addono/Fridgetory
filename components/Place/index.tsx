@@ -1,4 +1,4 @@
-import { Card, Space } from 'antd'
+import { Card, Space, Typography, Button } from 'antd'
 
 import { gql, useMutation } from '@apollo/client'
 
@@ -45,21 +45,51 @@ const Title = ({ name, id }: { name: string; id: number }) => {
 
 const sortProductByName = sortByStringField<Product>((product) => product.productType.name, removeNonAscii)
 
+const HiddenItemsText = ({ amount }: { amount: number }) => {
+  const { resetSearchQuery } = useSharedSearch()
+
+  if (amount <= 0) {
+    return null
+  }
+
+  return (
+    <>
+      <Typography.Text>
+        {amount} {amount == 1 ? 'item is' : 'items are'} hidden
+      </Typography.Text>
+      <Button type={'link'} onClick={() => resetSearchQuery()}>
+        Reset search filter
+      </Button>
+    </>
+  )
+}
+
 const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => {
   const { searchQuery } = useSharedSearch()
+
+  const labeledProducts = Array.from(products).map((product) => ({
+    product,
+    // Case check if the items should be visible
+    visible: product.productType.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  }))
+
+  const visibleProducts: Product[] = labeledProducts
+    .filter(({ visible }) => visible) // Remove all non-visible products
+    .map(({ product }) => product) // Extract all products
+
+  const hiddenProductCount: number = labeledProducts.filter(({ visible }) => !visible).length
 
   return (
     <Card title={<Title name={name} id={id} />}>
       <Space direction={'vertical'} style={{ width: '100%' }}>
-        {Array.from(products)
-          // Case insensitive filter to check if the items should be shown
-          .filter(({ productType }) => productType.name.toLowerCase().includes(searchQuery.toLowerCase()))
+        {visibleProducts
           // Sort the products based on their name
           .sort(sortProductByName)
           // Render each product
           .map(({ id, items, productType: { name } }) => (
             <Items productId={id} key={name} name={name} items={items} />
           ))}
+        <HiddenItemsText amount={hiddenProductCount} />
         <AddProduct placeId={id} existingProducts={products} />
       </Space>
     </Card>
