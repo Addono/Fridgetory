@@ -11,7 +11,8 @@
     "nexus:reflection": "nexus dev --reflection --entrypoint pages/api/graphql.ts",
     "nexus:check": "nexus build --entrypoint pages/api/graphql.ts && nexus build --entrypoint pages/api/playground.ts",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate up --experimental"
+    "prisma:migrate": "prisma migrate up --experimental",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@apollo/client": "^3.1.1",
@@ -47,7 +48,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn typecheck"
     }
   },
   "release": {
