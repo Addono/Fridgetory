@@ -77,7 +77,7 @@ const _app = ({ Component, pageProps }: any) => (
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <Layout.Header style={{ position: 'fixed', zIndex: 1, width: '100%', padding: '0 2em' }}>
+      <Layout.Header style={{ height: 64, position: 'fixed', zIndex: 1, width: '100%', padding: '0 2em' }}>
         <Row style={{ flexFlow: 'row' }}>
           <Col flex={'content'} style={{ color: 'white', paddingRight: '1em', fontWeight: 'bold' }}>
             Fridgetory
@@ -88,7 +88,7 @@ const _app = ({ Component, pageProps }: any) => (
         </Row>
       </Layout.Header>
 
-      <Layout.Content>
+      <Layout.Content style={{ marginTop: 64 }}>
         <ProvideApollo>
           <Component {...pageProps} />
         </ProvideApollo>
