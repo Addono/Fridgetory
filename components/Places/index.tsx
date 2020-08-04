@@ -6,6 +6,7 @@ import Place from '../Place'
 import AddPlace from './AddPlace'
 import Loading from '../Loading'
 import { useState } from 'react'
+import ServerErrorAnimatedIcon from '../Error/ServerErrorAnimatedIcon'
 
 export interface Item {
   id: number
@@ -64,7 +65,7 @@ const RetryButton = ({ refetch, duration = 2000 }: { refetch: () => void; durati
       }}
       loading={refetching}
     >
-      Retry
+      {refetching ? 'Retrying' : 'Retry?'}
     </Button>
   )
 }
@@ -88,9 +89,13 @@ const Places = () => {
   if (error) {
     return (
       <Result
-        status="500"
-        title="500"
-        subTitle="Sorry, something went wrong when getting the latest data."
+        title={'Oops!'}
+        subTitle={"This shouldn't have happened."}
+        icon={
+          <Space align={'center'} style={{ width: '50%', height: '50%' }}>
+            <ServerErrorAnimatedIcon />
+          </Space>
+        }
         extra={<RetryButton refetch={refetch} />}
       />
     )
