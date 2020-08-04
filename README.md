@@ -56,10 +56,10 @@ We support one-click deployments using Heroku. Go on, try it!
 
 If you want to deploy using Vercel, you will need to provision a Postgres database yourself.
 
-First, add the database as a secret:
+First, add the database as an environment value, enter the database url in the input field when asked:
 
 ```bash
-vercel secrets add fridgetory-database-url VALUE_OF_YOUR_DATABASE_LOCATION_HERE
+vercel env add fridgetory-database-url production
 ```
 
 Then deploy:
