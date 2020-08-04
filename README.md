@@ -56,13 +56,25 @@ We support one-click deployments using Heroku. Go on, try it!
 
 If you want to deploy using Vercel, you will need to provision a Postgres database yourself.
 
-First, add the database as an environment value, enter the database url in the input field when asked:
+First create your database and migrate it. Only Postgres has been tested, however any database supported by Prisma 2 should work. Run the migrations using:
+
+```bash
+DATABASE_URL=postgresql://[user[:password]@][netloc][:port][/dbname] yarn prisma:migrate
+```
+
+Then create your project on Vercel by running a deployment:
+
+```bash
+vercel
+```
+
+Then add the database as an environment variable to Vercel, enter the database url in the input field when asked:
 
 ```bash
 vercel env add fridgetory-database-url production
 ```
 
-Then deploy:
+Then re-deploy such that the newly added environment variables take effect:
 
 ```bash
 vercel --prod
