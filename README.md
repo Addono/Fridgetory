@@ -2,6 +2,7 @@
 
 <div align="center">
   <img src="./docs/imgs/screenshot.jpg" width="300px" />
+  <p>A small web-app to track the things in your freezer!</p>
 </div>
 
 ## Demo
