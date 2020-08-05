@@ -4,6 +4,12 @@
   <img src="./docs/imgs/screenshot.jpg" width="300px" />
 </div>
 
+## Demo
+
+You can find a demo-deployment [here](https://fridgetory.now.sh). It's deployed to [Vercel](https://vercel.com) and a Postgres database provided by [AlwaysData](https://alwaysdata.com). 
+
+_Note: This demo deployment uses a free-tier database with a limited amount of connections (10), the serverless nature of Vercel might exhaust this limit when deploying frequently or with a surge of users. For production deployments it is recommended to use a different pool of connections for production and preview deployments and support more database connections._
+
 ## Getting Started
 
 Install dependencies:
