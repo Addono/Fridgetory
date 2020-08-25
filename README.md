@@ -7,7 +7,7 @@
 
 ## Demo
 
-You can find a demo-deployment [here](https://fridgetory.now.sh). It's deployed to [Vercel](https://vercel.com) and a Postgres database provided by [AlwaysData](https://alwaysdata.com). 
+You can find a demo-deployment [here](https://fridgetory.now.sh). It's deployed to [Vercel](https://vercel.com) and a Postgres database provided by [AlwaysData](https://alwaysdata.com).
 
 _Note: This demo deployment uses a free-tier database with a limited amount of connections (10), the serverless nature of Vercel might exhaust this limit when deploying frequently or with a surge of users. For production deployments it is recommended to use a different pool of connections for production and preview deployments and support more database connections._
 
@@ -57,7 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 We support one-click deployments using Heroku. Go on, try it!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Addono/Fridgetory/tree/main)
 
 ### Vercel
 
