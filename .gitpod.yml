@@ -1,3 +1,7 @@
 tasks:
   - init: cp prisma/.env.template prisma/.env && yarn install --frozen-lockfile && yarn run build
     command: docker-compose up -d && yarn run prisma:migrate && yarn run start
+
+ports:
+  - port: 4000
+    onOpen: open-preview
