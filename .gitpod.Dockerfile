@@ -5,3 +5,5 @@ FROM gitpod/workspace-postgres
 # RUN brew install bastet
 #
 # More information: https://www.gitpod.io/docs/config-docker/
+
+ENV PORT=4000
