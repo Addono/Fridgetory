@@ -15,6 +15,14 @@ _Note: This demo deployment uses a free-tier database with a limited amount of c
 
 ## Getting Started
 
+### Gitpod
+
+You can use Gitpod for launching a development environment in your browser with just a single click. Go on, try it!
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Addono/Fridgetory)
+
+### Local
+
 Install dependencies:
 
 ```bash
