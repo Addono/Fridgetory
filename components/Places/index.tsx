@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 
-import { Space, Result, Button } from 'antd'
+import { Space, Result, Button, Empty } from 'antd'
 
 import Place from '../Place'
 import AddPlace from './AddPlace'
@@ -108,9 +108,11 @@ const Places = () => {
 
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
-      {data.places.map(({ id, name, products }) => (
-        <Place key={id} id={id} name={name} products={products} />
-      ))}
+      {data.places.length === 0 ? (
+        <Empty description={'No places added yet. Create one below.'} style={{ padding: '2em' }} />
+      ) : (
+        data.places.map(({ id, name, products }) => <Place key={id} id={id} name={name} products={products} />)
+      )}
       <AddPlace />
     </Space>
   )
