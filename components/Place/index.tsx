@@ -76,6 +76,8 @@ const isVisible = ({ productType: { name } }: Product): boolean => {
 }
 
 const Place = ({ id, name, products }: { id: number; name: string; products: Product[] }) => {
+  const { searchQuery } = useSharedSearch()
+
   const labeledProducts = Array.from(products).map((product) => ({
     product,
     // Case check if the items should be visible
@@ -98,8 +100,13 @@ const Place = ({ id, name, products }: { id: number; name: string; products: Pro
           .map(({ id, items, productType: { name } }) => (
             <Items productId={id} key={name} name={name} items={items} />
           ))}
-        <HiddenItemsText amount={hiddenProductCount} />
-        <AddProduct placeId={id} existingProducts={products} />
+        {searchQuery.length > 0 ? (
+          // Show the amount of hidden items when we are searching
+          <HiddenItemsText amount={hiddenProductCount} />
+        ) : (
+          // Only show the add-product option when we are not searching
+          <AddProduct placeId={id} existingProducts={products} />
+        )}
       </Space>
     </Card>
   )
