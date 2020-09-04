@@ -26,7 +26,7 @@ const MUTATION_DELETE_PLACE = gql`
   }
 `
 
-const Title = ({ name, id }: { name: string; id: number }) => {
+const Title = ({ name, id, canDelete }: { name: string; id: number; canDelete: boolean }) => {
   const [setNameMutation] = useMutation(MUTATION_EDIT_NAME_FOR_PLACE, {
     refetchQueries: [{ query: QUERY_PLACES }],
   })
@@ -38,7 +38,7 @@ const Title = ({ name, id }: { name: string; id: number }) => {
     <EditableTitle
       name={name}
       setName={(name) => setNameMutation({ variables: { name, id } })}
-      onDelete={() => deletePlace({ variables: { id } })}
+      onDelete={canDelete ? () => deletePlace({ variables: { id } }) : undefined}
     />
   )
 }
@@ -90,8 +90,11 @@ const Place = ({ id, name, products }: { id: number; name: string; products: Pro
 
   const hiddenProductCount: number = labeledProducts.filter(({ visible }) => !visible).length
 
+  // We can only delete this place if no products are attached anymore
+  const canDelete: boolean = products.length === 0
+
   return (
-    <Card title={<Title name={name} id={id} />}>
+    <Card title={<Title name={name} id={id} canDelete={canDelete} />}>
       <Space direction={'vertical'} style={{ width: '100%' }}>
         {visibleProducts
           // Sort the products based on their name
