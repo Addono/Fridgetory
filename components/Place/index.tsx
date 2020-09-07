@@ -58,7 +58,7 @@ const HiddenItemsText = ({ amount }: { amount: number }) => {
         {amount} {amount == 1 ? 'item is' : 'items are'} hidden
       </Typography.Text>
       <Button type={'link'} onClick={() => resetSearchQuery()}>
-        Reset search filter
+        Clear search filter
       </Button>
     </>
   )
