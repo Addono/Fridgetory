@@ -12,3 +12,5 @@ tasks:
 ports:
   - port: 3000
     onOpen: open-preview
+  - port: 5432
+    onOpen: ignore
