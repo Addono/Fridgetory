@@ -4,7 +4,7 @@ import { EditableTitle } from '../EditableTitle'
 
 const MUTATION_EDIT_NAME_FOR_PRODUCT_TYPE = gql`
   mutation EditNameForProductType($oldName: String!, $newName: String!) {
-    updateOneProductType(where: { name: $oldName }, data: { name: $newName }) {
+    updateOneProductType(where: { name: $oldName }, data: { name: { set: $newName } }) {
       id
     }
   }

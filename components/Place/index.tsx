@@ -12,7 +12,7 @@ import useSharedSearch from '../Search/useSharedSearch'
 
 const MUTATION_EDIT_NAME_FOR_PLACE = gql`
   mutation EditNameForPlace($name: String!, $id: Int!) {
-    updateOnePlace(where: { id: $id }, data: { name: $name }) {
+    updateOnePlace(where: { id: $id }, data: { name: { set: $name } }) {
       id
     }
   }
