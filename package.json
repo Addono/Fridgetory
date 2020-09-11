@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@apollo/client": "^3.1.4",
+    "@apollo/client": "^3.1.5",
     "antd": "4.5.4",
     "apollo-cache-persist": "^0.1.1",
     "next": "^9.5.3",
