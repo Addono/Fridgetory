@@ -2396,7 +2396,7 @@ ansistyles@~0.1.3:
   resolved "https://registry.yarnpkg.com/ansistyles/-/ansistyles-0.1.3.tgz#5de60415bda071bb37127854c864f41b23254539"
   integrity sha1-XeYEFb2gcbs3EnhUyGT0GyMlRTk=
 
-antd@4.6.4:
+antd@^4.6.4:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/antd/-/antd-4.6.4.tgz#297c9d1856a7745bfa4bae6aa4554498a047e244"
   integrity sha512-fzrxyXc93fq+h0A0Rduw+7we1qyZEIgwIefXJmZg7ft81M/nQcdJ1l37sbaJWcg120f+kjeuWIbrmCVUqTpgXw==
