@@ -37,6 +37,14 @@ const addPlaceToCache = ({ client, name }: { client: ApolloClient<Object>; name:
   })
 }
 
+const SubmitIcon = ({ enabled, callback }: { enabled: boolean; callback: () => void }) => {
+  if (enabled) {
+    return <PlusOutlined onClick={callback} />
+  } else {
+    return <PlusOutlined style={{ color: 'lightgrey' }} />
+  }
+}
+
 const AddPlace = () => {
   const [addPlaceMutation, { loading }] = useMutation(MUTATION_ADD_PLACE, {
     refetchQueries: [{ query: QUERY_PLACES }],
@@ -66,7 +74,7 @@ const AddPlace = () => {
         allowClear
         addonAfter={
           <Tooltip title="Add">
-            <PlusOutlined onClick={addPlace} />
+            <SubmitIcon enabled={!loading && name.length > 0} callback={addPlace} />
           </Tooltip>
         }
       />
