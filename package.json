@@ -15,6 +15,9 @@
     "prisma:migrate": "prisma migrate up --experimental",
     "typecheck": "tsc --noEmit"
   },
+  "engines": {
+    "node": "^14"
+  },
   "dependencies": {
     "@apollo/client": "^3.2.2",
     "antd": "^4.6.6",
