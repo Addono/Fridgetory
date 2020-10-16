@@ -40,7 +40,7 @@
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/node": "^14.11.8",
-    "@types/react": "^16.9.51",
+    "@types/react": "^16.9.52",
     "husky": ">=4",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
