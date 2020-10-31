@@ -7201,7 +7201,7 @@ next@^10.0.0:
   optionalDependencies:
     sharp "0.26.2"
 
-nexus-plugin-prisma@0.23.1:
+nexus-plugin-prisma@^0.23.1:
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/nexus-plugin-prisma/-/nexus-plugin-prisma-0.23.1.tgz#90f39905b8589ab92eff340daaedf7cb60a321c1"
   integrity sha512-cSH7BBUtxneLhD6BuGoOAG8uwjOExUfBnqA2LnJlkKP9BX4wG59Oe3LaJZfeiYqs0wex7yMeaN+9/uXIdKEJrA==
