@@ -23,3 +23,6 @@ jobs:
 
       - name: Run tests
         run: yarn test
+
+      - name: Check TypeScript types
+        run: yarn typecheck
