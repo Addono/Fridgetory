@@ -7,10 +7,11 @@
     "start": "next start -p $PORT",
     "dev": "next dev",
     "test": "yarn build",
-    "build": "yarn prisma:generate && yarn nexus:build",
+    "build": "yarn prisma:generate && yarn nexus:build && yarn next:build",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate up --experimental",
     "nexus:build": "ts-node --transpile-only graphql/schema.ts",
+    "next:build": "next build",
     "typecheck": "tsc --noEmit"
   },
   "engines": {
