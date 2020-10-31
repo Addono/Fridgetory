@@ -7,10 +7,7 @@
     "start": "next start -p $PORT",
     "dev": "next dev",
     "test": "yarn build",
-    "build": "yarn prisma:generate && yarn nexus build && next build",
-    "nexus:reflection": "nexus dev --reflection --entrypoint pages/api/graphql.ts",
-    "nexus:check": "yarn nexus:build",
-    "nexus:build": "nexus build --entrypoint pages/api/graphql.ts",
+    "build": "yarn prisma:generate && next build",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate up --experimental",
     "typecheck": "tsc --noEmit"
