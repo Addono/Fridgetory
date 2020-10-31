@@ -21,9 +21,10 @@
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@nexus/schema": "^0.17.0",
-    "@prisma/client": "2.3.0",
+    "@prisma/client": "^2.10.1",
     "antd": "^4.6.6",
     "apollo-cache-persist": "^0.1.1",
+    "apollo-server-micro": "^2.19.0",
     "graphql": "^15.4.0",
     "next": "^10.0.0",
     "next-pwa": "^3.1.5",
@@ -35,11 +36,11 @@
     "typescript": "^4.0.5"
   },
   "resolutions": {
-    "graphql": "^15.2.0",
+    "graphql": "^15.4.0",
     "antd/**/rc-virtual-list": "^3.0.9"
   },
   "devDependencies": {
-    "@prisma/cli": "2.3.0",
+    "@prisma/cli": "^2.10.1",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/node": "^14.14.6",
