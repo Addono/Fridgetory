@@ -137,7 +137,7 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
         <Tag
           closable={id >= 0} // Hide the close button for items merely existing in cache
           key={id}
-          onClose={(e: Event) => {
+          onClose={(e) => {
             e.preventDefault()
             deleteItem({ id })
           }}
