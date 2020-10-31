@@ -1,5 +1,6 @@
 import { queryType, mutationType, objectType, makeSchema } from '@nexus/schema'
 import { nexusPrisma } from 'nexus-plugin-prisma'
+import * as path from 'path'
 
 export const schema = makeSchema({
   plugins: [
@@ -11,7 +12,10 @@ export const schema = makeSchema({
     contextType: '{ prisma: PrismaClient.PrismaClient }',
     sources: [{ source: '.prisma/client', alias: 'PrismaClient' }],
   },
-  outputs: {},
+  outputs: {
+    typegen: path.join(process.cwd(), 'node_modules/@types/nexus-typegen/index.d.ts'),
+    schema: path.join(process.cwd(), 'api.graphql'),
+  },
   types: [
     queryType({
       definition: (t) => {
