@@ -1,13 +1,25 @@
-import app, { server } from 'nexus'
+import { ApolloServer } from 'apollo-server-micro'
+import { schema } from '../../graphql/schema'
+import { PrismaClient } from '@prisma/client'
 
-import '../../graphql/schema'
+const prisma = new PrismaClient()
 
-app.settings.change({
-  server: {
-    path: '/api/graphql',
-  },
+const server = new ApolloServer({
+  context: () => ({ prisma }),
+  schema,
+  introspection: true,
+  playground: process.env.NODE_ENV !== 'production',
 })
 
-app.assemble()
+const handler = server.createHandler({
+  path: '/api/graphql',
+})
 
-export default server.handlers.graphql
+// dont parse the body, next. apollo got this
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
+export default handler
