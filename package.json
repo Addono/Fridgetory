@@ -8,6 +8,7 @@
     "dev": "next dev",
     "test": "yarn build",
     "build": "yarn prisma:generate && yarn nexus:build && yarn next:build",
+    "cypress:open": "cypress open",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate up --experimental",
     "nexus:build": "NODE_ENV=development ts-node --transpile-only graphql/schema.ts",
