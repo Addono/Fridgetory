@@ -10,7 +10,7 @@
     "build": "yarn prisma:generate && yarn nexus:build && yarn next:build",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate up --experimental",
-    "nexus:build": "ts-node --transpile-only graphql/schema.ts",
+    "nexus:build": "NODE_ENV=development ts-node --transpile-only graphql/schema.ts",
     "next:build": "next build",
     "typecheck": "tsc --noEmit"
   },
