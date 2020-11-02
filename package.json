@@ -6,14 +6,17 @@
   "scripts": {
     "start": "next start -p ${PORT:-3000}",
     "dev": "next dev",
-    "test": "yarn build",
     "build": "yarn prisma:generate && yarn nexus:build && yarn next:build",
+    "test": "yarn cypress:run",
+    "typecheck": "yarn next:typecheck && yarn cypress:typecheck",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:typecheck": "tsc --noEmit --project cypress",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate up --experimental",
     "nexus:build": "NODE_ENV=development ts-node --transpile-only graphql/schema.ts",
     "next:build": "next build",
-    "typecheck": "tsc --noEmit"
+    "next:typecheck": "tsc --noEmit --project ."
   },
   "engines": {
     "node": "^14"
