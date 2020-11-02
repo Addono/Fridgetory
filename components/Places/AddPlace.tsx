@@ -66,6 +66,7 @@ const AddPlace = () => {
   return (
     <>
       <Input
+        data-cy={'add-place:input'}
         placeholder={'Name of new place'}
         value={name}
         onChange={({ target: { value } }) => setName(value)}
@@ -73,9 +74,11 @@ const AddPlace = () => {
         disabled={loading}
         allowClear
         addonAfter={
-          <Tooltip title="Add">
-            <SubmitIcon enabled={!loading && name.length > 0} callback={addPlace} />
-          </Tooltip>
+          <div data-cy={'add-place:submit'}>
+            <Tooltip title="Add">
+              <SubmitIcon enabled={!loading && name.length > 0} callback={addPlace} />
+            </Tooltip>
+          </div>
         }
       />
     </>
