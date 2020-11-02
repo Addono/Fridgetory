@@ -7,6 +7,7 @@ const SearchInput = () => {
 
   return (
     <Input
+      data-cy={'search:input'}
       onChange={(event) => setSearchQuery(event.target.value)}
       value={searchQuery}
       placeholder={'Search'}

@@ -107,7 +107,7 @@ const Places = () => {
   }
 
   return (
-    <Space direction="vertical" style={{ width: '100%' }}>
+    <Space data-cy={'places'} direction="vertical" style={{ width: '100%' }}>
       {data.places.length === 0 ? (
         <Empty description={'No places added yet. Create one below.'} style={{ padding: '2em' }} />
       ) : (

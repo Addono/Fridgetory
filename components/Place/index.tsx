@@ -94,7 +94,7 @@ const Place = ({ id, name, products }: { id: number; name: string; products: Pro
   const canDelete: boolean = products.length === 0
 
   return (
-    <Card title={<Title name={name} id={id} canDelete={canDelete} />}>
+    <Card data-cy={'place'} title={<Title name={name} id={id} canDelete={canDelete} />}>
       <Space direction={'vertical'} style={{ width: '100%' }}>
         {visibleProducts
           // Sort the products based on their name
