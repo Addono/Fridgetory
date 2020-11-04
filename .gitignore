@@ -299,4 +299,5 @@ public/workbox-*.js.map
 
 # Cypress
 cypress/videos/
+cypress/screenshots/
 
