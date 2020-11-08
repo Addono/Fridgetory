@@ -39,3 +39,4 @@ repository:
 
 labels:
   - name: automerge
+  - name: Feature Request
