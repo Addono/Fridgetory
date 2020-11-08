@@ -38,8 +38,6 @@ repository:
   allow_rebase_merge: true
 
 labels:
-  - name: automerge
-
   - name: Feature Request
     color: green
 
