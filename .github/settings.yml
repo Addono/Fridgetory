@@ -39,10 +39,10 @@ repository:
 
 labels:
   - name: Feature Request
-    color: green
+    color: a9f913
 
   - name: Improvement
-    color: orange
+    color: f9d0c4
 
   - name: Bug
-    color: red
+    color: b60205
