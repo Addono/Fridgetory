@@ -39,4 +39,12 @@ repository:
 
 labels:
   - name: automerge
+
   - name: Feature Request
+    color: green
+
+  - name: Improvement
+    color: orange
+
+  - name: Bug
+    color: red
