@@ -47,12 +47,6 @@ Run database migrations and generate the client:
 yarn prisma:migrate && yarn prisma:generate
 ```
 
-Generate and watch for changed made by Nexus:
-
-```bash
-yarn nexus:reflection
-```
-
 Then to run the development server in a different shell:
 
 ```bash
@@ -69,3 +63,27 @@ We support one-click deployments using Heroku. Go on, try it!
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Addono/Fridgetory/tree/main)
 
+### Locally
+
+Install dependencies:
+
+```bash
+yarn install --frozen-lockfile
+```
+
+Build the application:
+
+```bash
+yarn build
+```
+
+Migrate database if there are still pending migrations:
+```bash
+yarn prisma:migrate
+```
+
+Start the application, you can use the `PORT` environment variable to expose the application on a different port:
+
+```bash
+yarn start
+```
