@@ -35,11 +35,11 @@
   </a> 
   <br/><a href="https://github.com/Addono/Fridgetory"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://github.com/Addono/Fridgetory">View Demo</a>
+    <a href="https://fridgetory.now.sh/">View Demo</a>
     ·
-    <a href="https://github.com/Addono/Fridgetory/issues">Report Bug</a>
+    <a href="https://github.com/Addono/Fridgetory/issues">Report a Bug</a>
     ·
-    <a href="https://github.com/Addono/Fridgetory/issues">Request Feature</a>
+    <a href="https://github.com/Addono/Fridgetory/issues">Request a Feature</a>
   </p>
 </p>
 
