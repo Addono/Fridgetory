@@ -36,6 +36,7 @@
   <a href="https://github.com/Addono/Fridgetory/releases">
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Addono/Fridgetory?style=flat-square">
   </a>
+  <img alt="Depfu" src="https://img.shields.io/depfu/Addono/Fridgetory?style=flat-square">
   <br/>
   <a href="https://github.com/Addono/Fridgetory"><strong>Explore the docs »</strong></a>
     <br />
