@@ -33,7 +33,11 @@
   <a href="https://github.com/Addono/Fridgetory/actions">
   <img src="https://img.shields.io/github/workflow/status/Addono/Fridgetory/Test?style=flat-square&logo=github%20actions">
   </a> 
-  <br/><a href="https://github.com/Addono/Fridgetory"><strong>Explore the docs »</strong></a>
+  <a href="https://github.com/Addono/Fridgetory/releases">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Addono/Fridgetory?style=flat-square">
+  </a>
+  <br/>
+  <a href="https://github.com/Addono/Fridgetory"><strong>Explore the docs »</strong></a>
     <br />
     <a href="https://fridgetory.now.sh/">View Demo</a>
     ·
