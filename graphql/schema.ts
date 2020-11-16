@@ -24,7 +24,7 @@ export const schema = makeSchema({
         t.crud.productType()
         t.crud.productTypes()
         t.crud.item()
-        t.crud.items()
+        t.crud.items({ ordering: { createdAt: true } })
         t.crud.place()
         t.crud.places()
       },
@@ -57,7 +57,7 @@ export const schema = makeSchema({
       definition: (t) => {
         t.model.id()
         t.model.productType()
-        t.model.items()
+        t.model.items({ ordering: { createdAt: true } })
       },
     }),
 
