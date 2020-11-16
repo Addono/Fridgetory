@@ -41,7 +41,7 @@ jobs:
       - name: Populate the database
         run: yarn prisma:migrate
 
-      - name: Cypress run
+      - name: Run browser-based end-to-tests (Cypress)
         uses: cypress-io/github-action@v2
         with:
           start: yarn start
