@@ -42,7 +42,7 @@ export const QUERY_PLACES = gql`
         productType {
           name
         }
-        items {
+        items(orderBy: { createdAt: asc }) {
           id
           quantity
           unit
