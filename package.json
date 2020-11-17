@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
-    "@nexus/schema": "^0.17.0",
+    "@nexus/schema": "^0.18.0",
     "@prisma/client": "^2.10.1",
     "antd": "^4.8.2",
     "apollo-cache-persist": "^0.1.1",
