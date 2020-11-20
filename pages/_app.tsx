@@ -7,11 +7,22 @@ import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache
 import { persistCache } from 'apollo-cache-persist'
 import fetch from 'node-fetch'
 
+import * as Sentry from '@sentry/react'
+import { Integrations } from '@sentry/tracing'
+
 import Loading from '../components/Loading'
 import { SharedSearchProvider } from '../components/Search/useSharedSearch'
 import SearchInput from '../components/Search/SearchInput'
 
 import '../styles.css'
+
+if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  Sentry.init({
+    enabled: process.env.NODE_ENV === 'production',
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    integrations: [new Integrations.BrowserTracing()],
+  })
+}
 
 const cache = new InMemoryCache()
 
@@ -52,7 +63,7 @@ const ProvideApollo = ({ children }: { children: React.ReactNode }) => {
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 
-const _app = ({ Component, pageProps }: any) => {
+const _app = ({ Component, pageProps, err }: any) => {
   // Get the version of the application from the environment variables
   const { version } = process.env
 
@@ -95,7 +106,7 @@ const _app = ({ Component, pageProps }: any) => {
 
           <Layout.Content style={{ marginTop: 64 }}>
             <ProvideApollo>
-              <Component {...pageProps} />
+              <Component {...pageProps} err={err} />
             </ProvideApollo>
           </Layout.Content>
 
