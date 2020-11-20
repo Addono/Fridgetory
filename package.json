@@ -8,6 +8,8 @@
     "dev": "next dev",
     "build": "yarn prisma:generate && yarn nexus:build && yarn next:build",
     "test": "yarn cypress:run",
+    "lint": "prettier -l '{{pages,graphql,components,cypress,docs,.github}/**/*,*}.{js,jsx,ts,tsx,css,json,md,html,yml,yaml}' -l *.{json,js}",
+    "format": "yarn lint --write",
     "typecheck": "yarn next:typecheck && yarn cypress:typecheck",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
