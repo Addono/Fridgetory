@@ -105,7 +105,7 @@ const _app = ({ Component, pageProps }: any) => {
             </a>
             {version && (
               <>
-                -
+                ,{' '}
                 <a
                   href={`https://github.com/Addono/Fridgetory/releases/tag/v${version}`}
                   target="_blank"
