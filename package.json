@@ -22,7 +22,7 @@
     "next:typecheck": "tsc --noEmit --project ."
   },
   "engines": {
-    "node": "^14"
+    "node": "^14 || ^15"
   },
   "dependencies": {
     "@apollo/client": "^3.2.7",
