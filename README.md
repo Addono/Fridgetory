@@ -130,3 +130,10 @@ Start the application, you can use the `PORT` environment variable to expose the
 ```bash
 yarn start
 ```
+
+## Configuration
+
+### Sentry
+
+1. Login to Sentry, create a new project and copy the DSN, which looks something like: `https://7dbfb251580f457a971c4f8be71eccc1@o156197.ingest.sentry.io/5525232`
+2. As part of your deployment, set the `NEXT_PUBLIC_SENTRY_DSN` environment variable to this value.
