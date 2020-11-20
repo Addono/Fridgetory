@@ -93,7 +93,7 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: yarn semantic-release
 
   deploy-to-heroku:
     name: Deploy to Heroku
