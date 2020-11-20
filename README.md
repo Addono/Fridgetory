@@ -1,4 +1,3 @@
-
 <!-- PROJECT LOGO -->
 <br />
 <h3 align="center">Fridgetory</h3>
@@ -49,7 +48,6 @@
     <a href="https://github.com/Addono/Fridgetory/issues">Request a Feature</a>
   </p>
 </p>
-
 
 ## Demo
 
@@ -122,6 +120,7 @@ yarn build
 ```
 
 Migrate database if there are still pending migrations:
+
 ```bash
 yarn prisma:migrate
 ```
