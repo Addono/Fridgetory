@@ -1,6 +1,6 @@
 {
   "name": "fridgetory",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": false,
   "license": "MIT",
   "scripts": {
@@ -31,7 +31,6 @@
     "@sentry/react": "^5.27.4",
     "antd": "^4.8.4",
     "@sentry/tracing": "^5.27.4",
-    "antd": "^4.8.4",
     "apollo-cache-persist": "^0.1.1",
     "apollo-server-micro": "^2.19.0",
     "graphql": "^15.4.0",
