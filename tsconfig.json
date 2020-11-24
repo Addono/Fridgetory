@@ -23,5 +23,5 @@
     ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],
-  "exclude": ["node_modules/", "cypress/"]
+  "exclude": ["**/node_modules", "**/.*/", "cypress/"]
 }
