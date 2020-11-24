@@ -8,6 +8,7 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     runtimeCaching,
+    disable: process.env.NODE_ENV !== 'production',
   },
   excludeFile: (str) => /cypress\/\*/.test(str), // Exclude changes to test files
 })
