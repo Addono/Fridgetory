@@ -22,7 +22,7 @@ export const EditableTitle = ({
     }
 
     const SaveButton = () => (
-      <Tooltip title="Save">
+      <Tooltip title={'Save'}>
         <SaveFilled onClick={save} />
       </Tooltip>
     )
@@ -49,14 +49,14 @@ export const EditableTitle = ({
     )
   } else {
     const EditButton = () => (
-      <Tooltip title="Edit">
+      <Tooltip title={'Edit'}>
         <EditOutlined onClick={() => setEditing(true)} />
       </Tooltip>
     )
 
     return (
       <Space align={'baseline'}>
-        <p>{name}</p>
+        <p style={{ marginBottom: 0 }}>{name}</p>
         <EditButton />
       </Space>
     )
