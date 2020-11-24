@@ -170,6 +170,7 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
         placeholder={'Add'}
         value={[]}
         onSelect={(index) => addItem(quantities[index])}
+        size={'small'}
       >
         {quantityOptions}
       </Select>
