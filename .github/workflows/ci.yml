@@ -78,6 +78,9 @@ jobs:
       - build-and-test
       - build-heroku
 
+    outputs:
+      gitref: ${{ steps.storeGitRef.outputs.gitref}}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -95,6 +98,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn semantic-release
 
+      - name: Store Git HEAD reference
+        id: storeGitRef
+        run: echo "::set-output name=gitref::$(git rev-parse HEAD)"
+
   deploy-to-heroku:
     name: Deploy to Heroku
     runs-on: ubuntu-20.04
@@ -108,6 +115,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        with:
+          # Also checkout the version increment commit, if created during release.
+          ref: ${{ needs.release.outputs.gitref }}
 
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.6.8
