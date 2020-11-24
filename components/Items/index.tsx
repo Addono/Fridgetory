@@ -145,11 +145,11 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
       appear={false}
       style={{ float: 'left' }}
     >
-      <b>
+      <b key={'title'}>
         <ProductTypeTitle productId={productId} name={name} canDelete={items.length === 0} />
       </b>
 
-      <Divider type={'vertical'} />
+      <Divider key={'divider'} type={'vertical'} />
 
       {items.map(({ quantity, unit, id }) => (
         <Tag
