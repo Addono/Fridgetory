@@ -2,7 +2,7 @@ import { ApolloClient, gql, useApolloClient, useMutation } from '@apollo/client'
 import { Item, QUERY_PLACES, QueryAllItemsByPlace } from '../Places'
 import ProductTypeTitle from './ProductTypeTitle'
 
-import { Divider, Select, Tag, Col, Row, Space } from 'antd'
+import { Divider, Select, Tag, Col, Row, Space, Tooltip } from 'antd'
 import { TweenOneGroup } from 'rc-tween-one'
 import React from 'react'
 
@@ -151,18 +151,20 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
 
       <Divider key={'divider'} type={'vertical'} />
 
-      {items.map(({ quantity, unit, id }) => (
-        <Tag
-          closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
-          key={Math.abs(id)}
-          onClose={(e) => {
-            e.preventDefault()
-            deleteItem({ id })
-          }}
-        >
-          {quantity}
-          {unit}
-        </Tag>
+      {items.map(({ quantity, unit, id, createdAt }) => (
+        <Tooltip title={createdAt && new Date(createdAt).toLocaleDateString()}>
+          <Tag
+            closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
+            key={Math.abs(id)}
+            onClose={(e) => {
+              e.preventDefault()
+              deleteItem({ id })
+            }}
+          >
+            {quantity}
+            {unit}
+          </Tag>
+        </Tooltip>
       ))}
       <Select
         loading={addItemLoading}

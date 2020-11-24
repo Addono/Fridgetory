@@ -12,6 +12,7 @@ export interface Item {
   id: number
   quantity: number
   unit: string
+  createdAt?: string
 }
 
 export interface Product {
@@ -46,6 +47,7 @@ export const QUERY_PLACES = gql`
           id
           quantity
           unit
+          createdAt
         }
       }
     }
