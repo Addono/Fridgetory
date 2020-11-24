@@ -68,6 +68,7 @@ export const schema = makeSchema({
         t.model.quantity()
         t.model.unit()
         t.model.product()
+        t.model.createdAt()
       },
     }),
 
