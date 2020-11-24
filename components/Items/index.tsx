@@ -2,9 +2,8 @@ import { ApolloClient, gql, useApolloClient, useMutation } from '@apollo/client'
 import { Item, QUERY_PLACES, QueryAllItemsByPlace } from '../Places'
 import ProductTypeTitle from './ProductTypeTitle'
 
-import { Divider, Select, Tag, Col, Row, Space, Tooltip } from 'antd'
+import { Divider, Select, Tag, Tooltip } from 'antd'
 import { TweenOneGroup } from 'rc-tween-one'
-import React from 'react'
 
 const amountsWithUnit = [1, 5, 50, 100, 150, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
