@@ -96,15 +96,13 @@ const Place = ({ id, name, products }: { id: number; name: string; products: Pro
   return (
     <Card data-cy={'place'} title={<Title name={name} id={id} canDelete={canDelete} />}>
       <Space direction={'vertical'} style={{ width: '100%' }}>
-        <div>
-          {visibleProducts
-            // Sort the products based on their name
-            .sort(sortProductByName)
-            // Render each product
-            .map(({ id, items, productType: { name } }) => (
-              <Items productId={id} key={name} name={name} items={items} />
-            ))}
-        </div>
+        {visibleProducts
+          // Sort the products based on their name
+          .sort(sortProductByName)
+          // Render each product
+          .map(({ id, items, productType: { name } }) => (
+            <Items productId={id} key={name} name={name} items={items} />
+          ))}
         {searchQuery.length > 0 ? (
           // Show the amount of hidden items when we are searching
           <HiddenItemsText amount={hiddenProductCount} />
