@@ -55,12 +55,10 @@ export const EditableTitle = ({
     )
 
     return (
-      <>
-        {name}
-        &nbsp;
-        <Space size={'large'} direction={'horizontal'} />
+      <Space align={'baseline'}>
+        <p>{name}</p>
         <EditButton />
-      </>
+      </Space>
     )
   }
 }
