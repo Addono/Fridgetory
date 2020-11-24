@@ -80,11 +80,7 @@ const Places = () => {
 
   // Show a loading indicator
   if (loading) {
-    return (
-      <div style={{ display: 'grid', placeItems: 'center', width: '100%', marginTop: '3em' }}>
-        <Loading />
-      </div>
-    )
+    return <Loading center marginTop />
   }
 
   // Handle the case where there was no data and an error was emitted
