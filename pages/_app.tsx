@@ -57,7 +57,7 @@ const ProvideApollo = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   if (!client) {
-    return <Loading />
+    return <Loading center marginTop extra={<p>Loading...</p>} />
   }
 
   return <ApolloProvider client={client}>{children}</ApolloProvider>

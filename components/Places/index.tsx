@@ -80,7 +80,7 @@ const Places = () => {
 
   // Show a loading indicator
   if (loading) {
-    return <Loading center marginTop />
+    return <Loading center marginTop extra={<p>Retrieving data...</p>} />
   }
 
   // Handle the case where there was no data and an error was emitted
