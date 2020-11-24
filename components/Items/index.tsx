@@ -139,10 +139,9 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
 
   return (
     <TweenOneGroup
-      enter={{ scale: 0.8, opacity: 0, type: 'from', duration: 200 }}
-      leave={{ opacity: 0, width: 0, scale: 1, duration: 300 }}
-      appear={false}
-      style={{ float: 'left' }}
+      enter={{ opacity: 0, scale: 0.6, type: 'from', duration: 500 }}
+      leave={{ opacity: 1, width: 0, scale: 0, duration: 500 }}
+      appear={false} // Don't use the animations when loading the page for the first time
     >
       <b key={'title'}>
         <ProductTypeTitle productId={productId} name={name} canDelete={items.length === 0} />
@@ -153,7 +152,7 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
       {items.map(({ quantity, unit, id, createdAt }) => (
         <Tooltip key={Math.abs(id)} title={createdAt && new Date(createdAt).toLocaleDateString()}>
           <Tag
-            closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
+            closable={id >= 0} // Hide the close button for items merely existing in cache
             onClose={(e) => {
               e.preventDefault()
               deleteItem({ id })
@@ -164,6 +163,7 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
           </Tag>
         </Tooltip>
       ))}
+
       <Select
         loading={addItemLoading}
         style={{ width: '5em' }}
@@ -171,6 +171,7 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
         value={[]}
         onSelect={(index) => addItem(quantities[index])}
         size={'small'}
+        key={'add-item-input'}
       >
         {quantityOptions}
       </Select>
