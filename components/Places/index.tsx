@@ -87,8 +87,8 @@ const Places = () => {
     )
   }
 
-  // Handle the case if there's an error
-  if (error) {
+  // Handle the case where there was no data and an error was emitted
+  if (!data && error) {
     return (
       <Result
         title={'Oops!'}
@@ -103,7 +103,7 @@ const Places = () => {
     )
   }
 
-  // Handle the case where we received no data
+  // Handle the case where we received no data, but also no error was encountered
   if (!data) {
     return <Result status="404" title="It's empty" subTitle="Nothing here. Try adding something!" />
   }
