@@ -139,40 +139,41 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
   }
 
   return (
-    <Space align={'start'} split={<Divider type="vertical" />} style={{ width: '100%' }}>
+    <TweenOneGroup
+      enter={{ scale: 0.8, opacity: 0, type: 'from', duration: 200 }}
+      leave={{ opacity: 0, width: 0, scale: 1, duration: 300 }}
+      appear={false}
+      style={{ float: 'left' }}
+    >
       <b>
         <ProductTypeTitle productId={productId} name={name} canDelete={items.length === 0} />
       </b>
 
-      <TweenOneGroup
-        enter={{ scale: 0.8, opacity: 0, type: 'from', duration: 200 }}
-        leave={{ opacity: 0, width: 0, scale: 1, duration: 300 }}
-        appear={false}
-      >
-        {items.map(({ quantity, unit, id }) => (
-          <Tag
-            closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
-            key={Math.abs(id)}
-            onClose={(e) => {
-              e.preventDefault()
-              deleteItem({ id })
-            }}
-          >
-            {quantity}
-            {unit}
-          </Tag>
-        ))}
-        <Select
-          loading={addItemLoading}
-          style={{ width: '5em' }}
-          placeholder={'Add'}
-          value={[]}
-          onSelect={(index) => addItem(quantities[index])}
+      <Divider type={'vertical'} />
+
+      {items.map(({ quantity, unit, id }) => (
+        <Tag
+          closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
+          key={Math.abs(id)}
+          onClose={(e) => {
+            e.preventDefault()
+            deleteItem({ id })
+          }}
         >
-          {quantityOptions}
-        </Select>
-      </TweenOneGroup>
-    </Space>
+          {quantity}
+          {unit}
+        </Tag>
+      ))}
+      <Select
+        loading={addItemLoading}
+        style={{ width: '5em' }}
+        placeholder={'Add'}
+        value={[]}
+        onSelect={(index) => addItem(quantities[index])}
+      >
+        {quantityOptions}
+      </Select>
+    </TweenOneGroup>
   )
 }
 
