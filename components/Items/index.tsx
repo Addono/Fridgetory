@@ -1,7 +1,10 @@
-import { Divider, Select, Tag } from 'antd'
 import { ApolloClient, gql, useApolloClient, useMutation } from '@apollo/client'
 import { Item, QUERY_PLACES, QueryAllItemsByPlace } from '../Places'
 import ProductTypeTitle from './ProductTypeTitle'
+
+import { Divider, Select, Tag, Col, Row, Space } from 'antd'
+import { TweenOneGroup } from 'rc-tween-one'
+import React from 'react'
 
 const amountsWithUnit = [1, 5, 50, 100, 150, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
@@ -25,6 +28,14 @@ const MUTATION_ADD_ITEM = gql`
     }
   }
 `
+
+interface NewItem {
+  id: number
+}
+
+interface AddItemMutationData {
+  createOneItem: NewItem
+}
 
 const updateItemInData = (
   { places, ...args }: QueryAllItemsByPlace,
@@ -98,7 +109,7 @@ const MUTATION_DELETE_ITEM = gql`
 `
 
 const Items = ({ productId, name, items }: { productId: number; name: string; items: Item[] }) => {
-  const [addItemMutation] = useMutation(MUTATION_ADD_ITEM, {
+  const [addItemMutation, { loading: addItemLoading }] = useMutation<AddItemMutationData>(MUTATION_ADD_ITEM, {
     refetchQueries: [{ query: QUERY_PLACES }],
   })
   const [deleteItemMutation] = useMutation(MUTATION_DELETE_ITEM, {
@@ -106,16 +117,17 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
   })
   const client = useApolloClient()
 
-  const addItem = ({ quantity, unit }: { quantity: number; unit: string }) => {
-    // Update the cache to immediately reflect the change
-    addItemToCache({
-      productId,
-      item: { quantity, unit, id: -items.length },
-      client,
-    })
-
+  const addItem = async ({ quantity, unit }: { quantity: number; unit: string }) => {
     // Execute the mutation for persistent storage of the change
-    addItemMutation({ variables: { quantity, unit, productId } })
+    const { data } = await addItemMutation({ variables: { quantity, unit, productId } })
+
+    if (data) {
+      addItemToCache({
+        productId: data.createOneItem.id,
+        item: { quantity, unit, id: -items.length },
+        client,
+      })
+    }
   }
 
   const deleteItem = ({ id }: { id: number }) => {
@@ -127,29 +139,40 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
   }
 
   return (
-    <div style={{ width: '100%' }}>
+    <Space align={'start'} split={<Divider type="vertical" />} style={{ width: '100%' }}>
       <b>
         <ProductTypeTitle productId={productId} name={name} canDelete={items.length === 0} />
       </b>
-      <Divider type={'vertical'} />
 
-      {items.map(({ quantity, unit, id }) => (
-        <Tag
-          closable={id >= 0} // Hide the close button for items merely existing in cache
-          key={id}
-          onClose={(e) => {
-            e.preventDefault()
-            deleteItem({ id })
-          }}
+      <TweenOneGroup
+        enter={{ scale: 0.8, opacity: 0, type: 'from', duration: 200 }}
+        leave={{ opacity: 0, width: 0, scale: 1, duration: 300 }}
+        appear={false}
+      >
+        {items.map(({ quantity, unit, id }) => (
+          <Tag
+            closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
+            key={Math.abs(id)}
+            onClose={(e) => {
+              e.preventDefault()
+              deleteItem({ id })
+            }}
+          >
+            {quantity}
+            {unit}
+          </Tag>
+        ))}
+        <Select
+          loading={addItemLoading}
+          style={{ width: '5em' }}
+          placeholder={'Add'}
+          value={[]}
+          onSelect={(index) => addItem(quantities[index])}
         >
-          {quantity}
-          {unit}
-        </Tag>
-      ))}
-      <Select style={{ width: '5em' }} placeholder="Add" value={[]} onSelect={(index) => addItem(quantities[index])}>
-        {quantityOptions}
-      </Select>
-    </div>
+          {quantityOptions}
+        </Select>
+      </TweenOneGroup>
+    </Space>
   )
 }
 
