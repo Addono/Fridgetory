@@ -151,10 +151,9 @@ const Items = ({ productId, name, items }: { productId: number; name: string; it
       <Divider key={'divider'} type={'vertical'} />
 
       {items.map(({ quantity, unit, id, createdAt }) => (
-        <Tooltip title={createdAt && new Date(createdAt).toLocaleDateString()}>
+        <Tooltip key={Math.abs(id)} title={createdAt && new Date(createdAt).toLocaleDateString()}>
           <Tag
             closable={true} //{id >= 0} // Hide the close button for items merely existing in cache
-            key={Math.abs(id)}
             onClose={(e) => {
               e.preventDefault()
               deleteItem({ id })
