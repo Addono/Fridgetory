@@ -7304,10 +7304,10 @@ next@^10.0.3:
   optionalDependencies:
     sharp "0.26.2"
 
-nexus-plugin-prisma@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/nexus-plugin-prisma/-/nexus-plugin-prisma-0.24.0.tgz#b943cbc2d8c600db4e8bc8540ef7ea66a8ded2dc"
-  integrity sha512-tilgXXDMURrnIm/nZ6ldag0SSSnm5feT6SY+TdFzKziToEhnf67tuKCZqlqqzGKYeJgSYDzblxeUZXKI4oRQfQ==
+nexus-plugin-prisma@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/nexus-plugin-prisma/-/nexus-plugin-prisma-0.25.0.tgz#b06ecb7596ee6e0ce2403bf84174a61a706a549a"
+  integrity sha512-nKAsTtlmRhw6cOL/afUEGKaMfcJxHSsAvcUVDnmFwychBllms5Gqp1lFOdoE29U8qBS5l9PpuUMFEK+vAgI+iQ==
   dependencies:
     camelcase "^6.0.0"
     fs-jetpack "^4.0.0"
