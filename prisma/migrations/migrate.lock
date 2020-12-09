@@ -1,5 +1,0 @@
-# Prisma Migrate lockfile v1
-
-20200516113333-init
-20200516113840-backlink-products-to-items
-20201116134605-adds-created-at-field-to-items
