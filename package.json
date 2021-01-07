@@ -34,7 +34,7 @@
     "apollo-cache-persist": "^0.1.1",
     "apollo-server-micro": "^2.19.1",
     "graphql": "^15.4.0",
-    "next": "^10.0.3",
+    "next": "^10.0.5",
     "next-pwa": "^5.0.0",
     "nexus-plugin-prisma": "^0.25.0",
     "node-fetch": "^2.6.1",
