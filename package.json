@@ -35,7 +35,7 @@
     "apollo-server-micro": "^2.19.2",
     "graphql": "^15.5.0",
     "next": "^10.0.5",
-    "next-pwa": "^5.0.4",
+    "next-pwa": "^5.0.5",
     "nexus-plugin-prisma": "^0.25.0",
     "node-fetch": "^2.6.1",
     "rc-tween-one": "^2.7.3",
