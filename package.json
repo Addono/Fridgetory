@@ -28,7 +28,7 @@
     "@apollo/client": "^3.3.7",
     "@nexus/schema": "^0.20.1",
     "@prisma/client": "^2.15.0",
-    "@sentry/react": "^5.29.0",
+    "@sentry/react": "^5.30.0",
     "@sentry/tracing": "^5.29.0",
     "antd": "^4.10.3",
     "apollo-cache-persist": "^0.1.1",
