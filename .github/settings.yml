@@ -37,12 +37,31 @@ repository:
   # rebase-merging.
   allow_rebase_merge: true
 
+  # Either `true` to enable automated security fixes, or `false` to disable
+  # automated security fixes.
+  enable_automated_security_fixes: true
+
+  # Either `true` to enable vulnerability alerts, or `false` to disable
+  # vulnerability alerts.
+  enable_vulnerability_alerts: true
+
+# Labels: define labels for Issues and Pull Requests
 labels:
-  - name: Feature Request
-    color: a9f913
+  - name: bug
+    color: 'CC0000'
+  - name: feature
+    color: '336699'
+  - name: improvement
+    color: 'FFCC66'
+  - name: Low hanging fruit
+    description: Quick wins
+    color: '00FF99'
 
-  - name: Improvement
-    color: f9d0c4
+  - name: automerge
 
-  - name: Bug
-    color: b60205
+  - name: dependencies
+    color: '283AFC'
+  - name: yarn
+    color: 'DC9750'
+  - name: Github Actions
+    color: '2C1E10'
