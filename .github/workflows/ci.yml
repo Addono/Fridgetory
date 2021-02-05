@@ -47,7 +47,7 @@ jobs:
           wait-on: 'http://localhost:3000'
           env: DATABASE_URL=${{ env.DATABASE_URL }}
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2.2.2
         if: failure()
         with:
           name: cypress-screenshots
