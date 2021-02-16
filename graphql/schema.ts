@@ -1,4 +1,4 @@
-import { queryType, mutationType, objectType, makeSchema } from '@nexus/schema'
+import { queryType, mutationType, objectType, makeSchema } from 'nexus'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 import * as path from 'path'
 
@@ -8,13 +8,22 @@ export const schema = makeSchema({
       experimentalCRUD: true,
     }),
   ],
-  typegenAutoConfig: {
-    contextType: '{ prisma: PrismaClient.PrismaClient }',
-    sources: [{ source: '.prisma/client', alias: 'PrismaClient' }],
-  },
   outputs: {
     typegen: path.join(process.cwd(), 'node_modules/@types/nexus-typegen/index.d.ts'),
     schema: path.join(process.cwd(), 'api.graphql'),
+  },
+  contextType: {
+    // @ts-ignore
+    source: require.resolve('./context'),
+    alias: 'ContextModule'
+  },
+  sourceTypes: {
+    modules: [
+      {
+        module: require.resolve('.prisma/client/index.d.ts'),
+        alias: "prisma",
+      }
+    ]
   },
   types: [
     queryType({
@@ -24,6 +33,7 @@ export const schema = makeSchema({
         t.crud.productType()
         t.crud.productTypes()
         t.crud.item()
+        // @ts-ignore
         t.crud.items({ ordering: { createdAt: true } })
         t.crud.place()
         t.crud.places()
@@ -57,7 +67,9 @@ export const schema = makeSchema({
       definition: (t) => {
         t.model.id()
         t.model.productType()
+        // @ts-ignore
         t.model.items({ ordering: { createdAt: true } })
+        t.model.items()
       },
     }),
 
