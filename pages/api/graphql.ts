@@ -1,11 +1,9 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { schema } from '../../graphql/schema'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import prismaClient from '../../prisma/prisma'
 
 const server = new ApolloServer({
-  context: () => ({ prisma }),
+  context: () => ({ prisma: prismaClient }),
   schema,
   introspection: true,
   playground: process.env.NODE_ENV !== 'production',
