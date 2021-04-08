@@ -30,7 +30,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.12",
     "@nexus/schema": "^0.20.1",
-    "@prisma/client": "^2.15.0",
+    "@prisma/client": "^2.19.0",
     "@sentry/react": "^6.2.3",
     "@sentry/tracing": "^6.2.3",
     "antd": "^4.12.3",
