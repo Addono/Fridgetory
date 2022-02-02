@@ -30,7 +30,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.21",
     "@nexus/schema": "^0.20.1",
-    "@prisma/client": "^2.15.0",
+    "@prisma/client": "^2",
     "@sentry/react": "^6.9.0",
     "@sentry/tracing": "^6.9.0",
     "antd": "^4.16.13",
@@ -41,6 +41,7 @@
     "next-pwa": "^5.2.24",
     "nexus-plugin-prisma": "^0.25.0",
     "node-fetch": "^2.6.7",
+    "prisma": "^2",
     "rc-tween-one": "^2.7.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
