@@ -4,7 +4,7 @@ image:
 tasks:
   - init: >
       yarn install --frozen-lockfile &&
-      yarn run prisma:build && 
+      yarn run prisma:generate && 
       yarn run nexus:build &&
       yarn run prisma:migrate
     command: yarn run dev
