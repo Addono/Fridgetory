@@ -40,7 +40,7 @@
     "next": "^12.0.10",
     "next-pwa": "^5.2.24",
     "nexus-plugin-prisma": "^0.25.0",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.2.10",
     "prisma": "^2",
     "rc-tween-one": "^2.7.3",
     "react": "^17.0.2",
