@@ -41,7 +41,7 @@ jobs:
         run: yarn prisma:migrate
 
       - name: Run browser-based end-to-tests (Cypress)
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           start: yarn start
           wait-on: 'http://localhost:3000'
