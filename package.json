@@ -63,7 +63,7 @@
     "lint-staged": "^11.1.2",
     "pinst": "^2.1.6",
     "prettier": "^2.3.2",
-    "semantic-release": "^17.4.5",
+    "semantic-release": "^21.0.3",
     "ts-node": "^10.1.0"
   },
   "prettier": {
